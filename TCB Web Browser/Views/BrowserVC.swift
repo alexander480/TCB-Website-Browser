@@ -9,15 +9,24 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, UISearchBarDelegate
+class Browser: UIViewController, UISearchBarDelegate
 {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var webView: WKWebView!
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        searchBar.autocapitalizationType = .none
+        searchBar.autocorrectionType = .no
+        
+        activity.startAnimating()
         webView.load(URLRequest(url: URL(string: "https://tcb.ai/")!))
+        activity.stopAnimating()
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
@@ -25,11 +34,13 @@ class ViewController: UIViewController, UISearchBarDelegate
         webView.resignFirstResponder()
         if let rawString = searchBar.text
         {
-            let searchString = rawString.clean()
+            let searchString = rawString.urlFormat()
 
             if let searchURL = URL(string: searchString)
             {
+                activity.startAnimating()
                 webView.load(URLRequest(url: searchURL))
+                activity.stopAnimating()
             }
             else
             {

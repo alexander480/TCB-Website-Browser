@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141F75231FB3768600670FA9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F75221FB3768600670FA9 /* SettingsVC.swift */; };
 		1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7511FB13EC000D49372 /* AppDelegate.swift */; };
-		1491E7541FB13EC000D49372 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7531FB13EC000D49372 /* ViewController.swift */; };
+		1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7531FB13EC000D49372 /* BrowserVC.swift */; };
 		1491E7571FB13EC000D49372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7551FB13EC000D49372 /* Main.storyboard */; };
 		1491E7591FB13EC000D49372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7581FB13EC000D49372 /* Assets.xcassets */; };
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
@@ -16,9 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		141F75221FB3768600670FA9 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		1491E74E1FB13EC000D49372 /* TCB Web Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCB Web Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1491E7511FB13EC000D49372 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1491E7531FB13EC000D49372 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1491E7531FB13EC000D49372 /* BrowserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserVC.swift; sourceTree = "<group>"; };
 		1491E7561FB13EC000D49372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1491E7581FB13EC000D49372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1491E75B1FB13EC000D49372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,8 +61,8 @@
 				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
 				1491E75D1FB13EC000D49372 /* Info.plist */,
 				1491E7641FB13EE600D49372 /* Core */,
-				1491E7631FB13EDC00D49372 /* UI */,
 				1491E7651FB13EEC00D49372 /* Views */,
+				1491E7631FB13EDC00D49372 /* UI */,
 			);
 			path = "TCB Web Browser";
 			sourceTree = "<group>";
@@ -86,7 +88,8 @@
 		1491E7651FB13EEC00D49372 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1491E7531FB13EC000D49372 /* ViewController.swift */,
+				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
+				141F75221FB3768600670FA9 /* SettingsVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -163,7 +166,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1491E7541FB13EC000D49372 /* ViewController.swift in Sources */,
+				1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */,
+				141F75231FB3768600670FA9 /* SettingsVC.swift in Sources */,
 				1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */,
 				1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */,
 			);

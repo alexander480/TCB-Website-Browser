@@ -23,16 +23,18 @@ class ViewController: UIViewController, UISearchBarDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
         webView.resignFirstResponder()
+        if let rawString = searchBar.text
+        {
+            let searchString = rawString.clean()
 
-        var searchInput = searchBar.text!
-        
-        if searchInput.contains("http://") == false
-        {
-            searchInput = "http://" + searchInput
-        }
-        else if searchInput.contains("https://") == false
-        {
-            searchInput = "http://" + searchInput
+            if let searchURL = URL(string: searchString)
+            {
+                webView.load(URLRequest(url: searchURL))
+            }
+            else
+            {
+                // Search searchString In Default Search Engine
+            }
         }
     }
     

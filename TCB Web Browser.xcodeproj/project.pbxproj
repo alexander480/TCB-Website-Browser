@@ -12,7 +12,7 @@
 		1491E7571FB13EC000D49372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7551FB13EC000D49372 /* Main.storyboard */; };
 		1491E7591FB13EC000D49372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7581FB13EC000D49372 /* Assets.xcassets */; };
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
-		1491E7671FB1465000D49372 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7661FB1465000D49372 /* Default-568h@2x.png */; };
+		1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		1491E7581FB13EC000D49372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1491E75B1FB13EC000D49372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1491E75D1FB13EC000D49372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1491E7661FB1465000D49372 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1493F5331FB28AD200D0F6B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = "TCB Web Browser/Core/Extension.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,6 @@
 		1491E7451FB13EC000D49372 = {
 			isa = PBXGroup;
 			children = (
-				1491E7661FB1465000D49372 /* Default-568h@2x.png */,
 				1491E7501FB13EC000D49372 /* TCB Web Browser */,
 				1491E74F1FB13EC000D49372 /* Products */,
 			);
@@ -57,9 +56,11 @@
 		1491E7501FB13EC000D49372 /* TCB Web Browser */ = {
 			isa = PBXGroup;
 			children = (
+				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
+				1491E75D1FB13EC000D49372 /* Info.plist */,
 				1491E7641FB13EE600D49372 /* Core */,
-				1491E7651FB13EEC00D49372 /* Views */,
 				1491E7631FB13EDC00D49372 /* UI */,
+				1491E7651FB13EEC00D49372 /* Views */,
 			);
 			path = "TCB Web Browser";
 			sourceTree = "<group>";
@@ -67,7 +68,6 @@
 		1491E7631FB13EDC00D49372 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
 				1491E7551FB13EC000D49372 /* Main.storyboard */,
 				1491E7581FB13EC000D49372 /* Assets.xcassets */,
 			);
@@ -77,8 +77,8 @@
 		1491E7641FB13EE600D49372 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
-				1491E75D1FB13EC000D49372 /* Info.plist */,
+				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
+				1493F5331FB28AD200D0F6B6 /* Extension.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -151,7 +151,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */,
-				1491E7671FB1465000D49372 /* Default-568h@2x.png in Resources */,
 				1491E7591FB13EC000D49372 /* Assets.xcassets in Resources */,
 				1491E7571FB13EC000D49372 /* Main.storyboard in Resources */,
 			);
@@ -165,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1491E7541FB13EC000D49372 /* ViewController.swift in Sources */,
+				1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */,
 				1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

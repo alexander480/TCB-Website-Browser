@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141F75251FB37F0700670FA9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F75241FB37F0700670FA9 /* SettingsVC.swift */; };
 		1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7511FB13EC000D49372 /* AppDelegate.swift */; };
 		1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7531FB13EC000D49372 /* BrowserVC.swift */; };
 		1491E7571FB13EC000D49372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7551FB13EC000D49372 /* Main.storyboard */; };
 		1491E7591FB13EC000D49372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7581FB13EC000D49372 /* Assets.xcassets */; };
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
 		1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* Extension.swift */; };
+		14A976CF1FB4F46600327A18 /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A976CE1FB4F46600327A18 /* HistoryVC.swift */; };
+		14A976D11FB4F4A100327A18 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A976D01FB4F4A100327A18 /* PasswordVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		141F75241FB37F0700670FA9 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		1491E74E1FB13EC000D49372 /* TCB Web Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCB Web Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1491E7511FB13EC000D49372 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1491E7531FB13EC000D49372 /* BrowserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserVC.swift; sourceTree = "<group>"; };
@@ -24,6 +28,8 @@
 		1491E75B1FB13EC000D49372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1491E75D1FB13EC000D49372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1493F5331FB28AD200D0F6B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = "TCB Web Browser/Core/Extension.swift"; sourceTree = SOURCE_ROOT; };
+		14A976CE1FB4F46600327A18 /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
+		14A976D01FB4F4A100327A18 /* PasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +65,8 @@
 				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
 				1491E75D1FB13EC000D49372 /* Info.plist */,
 				1491E7641FB13EE600D49372 /* Core */,
-				1491E7651FB13EEC00D49372 /* Views */,
 				1491E7631FB13EDC00D49372 /* UI */,
+				1491E7651FB13EEC00D49372 /* Views */,
 			);
 			path = "TCB Web Browser";
 			sourceTree = "<group>";
@@ -87,6 +93,9 @@
 			isa = PBXGroup;
 			children = (
 				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
+				141F75241FB37F0700670FA9 /* SettingsVC.swift */,
+				14A976CE1FB4F46600327A18 /* HistoryVC.swift */,
+				14A976D01FB4F4A100327A18 /* PasswordVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +173,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */,
+				14A976D11FB4F4A100327A18 /* PasswordVC.swift in Sources */,
+				14A976CF1FB4F46600327A18 /* HistoryVC.swift in Sources */,
+				141F75251FB37F0700670FA9 /* SettingsVC.swift in Sources */,
 				1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */,
 				1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */,
 			);

@@ -14,7 +14,6 @@ extension String
     {
         var array = self.lowercased().components(separatedBy: ".")
         var cleanedURL = ""
-        
         if array.count == 3
         {
             if array[0].contains("http://") || array[0].contains("https://")
@@ -27,15 +26,20 @@ extension String
                 cleanedURL = array.joined(separator: ".")
             }
         }
-            
         else if array.count == 2
         {
             cleanedURL = "http://www." + array.joined(separator: ".")
         }
-            
         else
         {
-            cleanedURL = self.lowercased()
+            var query = self.lowercased()
+            
+            if query.contains(" ")
+            {
+                query = query.replacingOccurrences(of: " ", with: "+")
+            }
+            
+            cleanedURL = "http://www.google.com/search?q=\(query)"
         }
         
         print(cleanedURL)

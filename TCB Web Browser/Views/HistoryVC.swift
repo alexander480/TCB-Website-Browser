@@ -33,11 +33,11 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell")!
-             cell.textLabel!.text = history[indexPath.row].value(forKey: "url") as? String
-             cell.detailTextLabel!.text = history[indexPath.row].value(forKey: "date") as? String
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell") as UITableViewCell!
+             cell!.textLabel!.text = history[indexPath.row].value(forKey: "url") as? String
+             cell!.detailTextLabel!.text = history[indexPath.row].value(forKey: "date") as? String
         
-        return cell
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

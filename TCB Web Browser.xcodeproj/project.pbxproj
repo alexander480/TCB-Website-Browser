@@ -14,9 +14,8 @@
 		1491E7591FB13EC000D49372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7581FB13EC000D49372 /* Assets.xcassets */; };
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
 		1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* Extension.swift */; };
-		14A976CF1FB4F46600327A18 /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A976CE1FB4F46600327A18 /* HistoryVC.swift */; };
 		14A976D11FB4F4A100327A18 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A976D01FB4F4A100327A18 /* PasswordVC.swift */; };
-		14E0AE821FB7C20000C347D6 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0AE811FB7C20000C347D6 /* SearchVC.swift */; };
+		14E0AE851FB7DCD800C347D6 /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A976CE1FB4F46600327A18 /* HistoryVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		1493F5331FB28AD200D0F6B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = "TCB Web Browser/Core/Extension.swift"; sourceTree = SOURCE_ROOT; };
 		14A976CE1FB4F46600327A18 /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
 		14A976D01FB4F4A100327A18 /* PasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
-		14E0AE811FB7C20000C347D6 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +96,6 @@
 				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
 				14A976CE1FB4F46600327A18 /* HistoryVC.swift */,
 				14A976D01FB4F4A100327A18 /* PasswordVC.swift */,
-				14E0AE811FB7C20000C347D6 /* SearchVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,13 +172,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E0AE851FB7DCD800C347D6 /* HistoryVC.swift in Sources */,
 				1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */,
 				14A976D11FB4F4A100327A18 /* PasswordVC.swift in Sources */,
-				14A976CF1FB4F46600327A18 /* HistoryVC.swift in Sources */,
 				1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */,
 				1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */,
 				1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */,
-				14E0AE821FB7C20000C347D6 /* SearchVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

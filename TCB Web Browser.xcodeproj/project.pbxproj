@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		141F75251FB37F0700670FA9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F75241FB37F0700670FA9 /* SettingsVC.swift */; };
+		1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1483932A1FB659300089D95E /* Model.xcdatamodeld */; };
 		1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7511FB13EC000D49372 /* AppDelegate.swift */; };
 		1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7531FB13EC000D49372 /* BrowserVC.swift */; };
 		1491E7571FB13EC000D49372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7551FB13EC000D49372 /* Main.storyboard */; };
@@ -16,10 +16,11 @@
 		1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* Extension.swift */; };
 		14A976CF1FB4F46600327A18 /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A976CE1FB4F46600327A18 /* HistoryVC.swift */; };
 		14A976D11FB4F4A100327A18 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A976D01FB4F4A100327A18 /* PasswordVC.swift */; };
+		14E0AE821FB7C20000C347D6 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0AE811FB7C20000C347D6 /* SearchVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		141F75241FB37F0700670FA9 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		1483932B1FB659300089D95E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1491E74E1FB13EC000D49372 /* TCB Web Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCB Web Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1491E7511FB13EC000D49372 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1491E7531FB13EC000D49372 /* BrowserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserVC.swift; sourceTree = "<group>"; };
@@ -30,6 +31,7 @@
 		1493F5331FB28AD200D0F6B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = "TCB Web Browser/Core/Extension.swift"; sourceTree = SOURCE_ROOT; };
 		14A976CE1FB4F46600327A18 /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
 		14A976D01FB4F4A100327A18 /* PasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
+		14E0AE811FB7C20000C347D6 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +64,9 @@
 		1491E7501FB13EC000D49372 /* TCB Web Browser */ = {
 			isa = PBXGroup;
 			children = (
-				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
 				1491E75D1FB13EC000D49372 /* Info.plist */,
+				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
+				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
 				1491E7641FB13EE600D49372 /* Core */,
 				1491E7631FB13EDC00D49372 /* UI */,
 				1491E7651FB13EEC00D49372 /* Views */,
@@ -93,9 +96,9 @@
 			isa = PBXGroup;
 			children = (
 				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
-				141F75241FB37F0700670FA9 /* SettingsVC.swift */,
 				14A976CE1FB4F46600327A18 /* HistoryVC.swift */,
 				14A976D01FB4F4A100327A18 /* PasswordVC.swift */,
+				14E0AE811FB7C20000C347D6 /* SearchVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,9 +178,10 @@
 				1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */,
 				14A976D11FB4F4A100327A18 /* PasswordVC.swift in Sources */,
 				14A976CF1FB4F46600327A18 /* HistoryVC.swift in Sources */,
-				141F75251FB37F0700670FA9 /* SettingsVC.swift in Sources */,
+				1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */,
 				1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */,
 				1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */,
+				14E0AE821FB7C20000C347D6 /* SearchVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +321,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWSMFUQHS2;
 				INFOPLIST_FILE = "TCB Web Browser/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LAGBTECH.TCB-Web-Browser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -332,6 +337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWSMFUQHS2;
 				INFOPLIST_FILE = "TCB Web Browser/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LAGBTECH.TCB-Web-Browser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -362,6 +368,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1483932A1FB659300089D95E /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1483932B1FB659300089D95E /* Model.xcdatamodel */,
+			);
+			currentVersion = 1483932B1FB659300089D95E /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = Core/Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1491E7461FB13EC000D49372 /* Project object */;
 }

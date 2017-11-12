@@ -62,9 +62,6 @@
 		1491E7501FB13EC000D49372 /* TCB Web Browser */ = {
 			isa = PBXGroup;
 			children = (
-				1491E75D1FB13EC000D49372 /* Info.plist */,
-				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
-				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
 				1491E7641FB13EE600D49372 /* Core */,
 				1491E7631FB13EDC00D49372 /* UI */,
 				1491E7651FB13EEC00D49372 /* Views */,
@@ -75,6 +72,7 @@
 		1491E7631FB13EDC00D49372 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
 				1491E7551FB13EC000D49372 /* Main.storyboard */,
 				1491E7581FB13EC000D49372 /* Assets.xcassets */,
 			);
@@ -84,7 +82,9 @@
 		1491E7641FB13EE600D49372 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
+				1491E75D1FB13EC000D49372 /* Info.plist */,
+				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
+				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
 				1493F5331FB28AD200D0F6B6 /* Extension.swift */,
 			);
 			path = Core;
@@ -372,8 +372,7 @@
 				1483932B1FB659300089D95E /* Model.xcdatamodel */,
 			);
 			currentVersion = 1483932B1FB659300089D95E /* Model.xcdatamodel */;
-			name = Model.xcdatamodeld;
-			path = Core/Model.xcdatamodeld;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -171,7 +171,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate
 
                 let historyObject = NSManagedObject(entity: entity!, insertInto: context)
                      historyObject.setValue(searchString, forKey: "url" )
-                     historyObject.setValue(Date(), forKey: "key")
+                     historyObject.setValue(Date(), forKey: "date")
                 
                 do { try context.save() } catch { print("Failed saving") }
             }

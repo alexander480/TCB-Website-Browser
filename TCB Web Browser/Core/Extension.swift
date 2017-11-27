@@ -7,7 +7,33 @@
 //
 
 import Foundation
+import CoreData
 import UIKit
+
+extension UISegmentedControl
+{
+    func removeBorders() {
+        if let background = self.backgroundColor
+        { setBackgroundImage(imageWithColor(color: background), for: .normal, barMetrics: .default) }
+        
+        if let tint = self.tintColor
+        { setBackgroundImage(imageWithColor(color: tint), for: .selected, barMetrics: .default) }
+        
+        setDividerImage(imageWithColor(color: UIColor.clear), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+    }
+    
+    // create a 1x1 image with this color
+    private func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0.0, y: 0.0, width:  1.0, height: 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context!.setFillColor(color.cgColor);
+        context!.fill(rect);
+        let image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return image!
+    }
+}
 
 extension String
 {
@@ -39,14 +65,72 @@ extension String
 
 extension UIViewController
 {
-    func hideKeyboardWhenTappedAround()
+    func historyObject(URL: String, Date: Date) -> NSManagedObject
     {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+        let context = appDelegate.persistentContainer.viewContext
+        print("Context: \(context)")
+        
+        let entity = NSEntityDescription.entity(forEntityName: "History", in: context)!
+        print("Entity: \(entity)")
+        
+        let object = NSManagedObject(entity: entity, insertInto: context)
+            object.setValue(URL, forKey: "url" )
+            object.setValue(Date, forKey: "date")
+        
+        do { try context.save(); print("Object: \(object)") }
+        catch { print("Failed To Store History Object") }
+        
+        return object
     }
     
-    @objc func dismissKeyboard() { view.endEditing(true) }
+    func fetchCoreDate(EntityName: String) -> Array<NSManagedObject>
+    {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: EntityName)
+        let context = appDelegate.persistentContainer.viewContext
+        
+        var result: [NSManagedObject]!
+        
+        do { result = try context.fetch(fetchRequest) }
+        catch let error as NSError { print("Could not fetch. \(error), \(error.userInfo)") }
+        
+        return result
+    }
+    
+    func setTCBLogin(Username: String, Password: String) -> NSManagedObject
+    {
+        let context = appDelegate.persistentContainer.viewContext
+        print("Context: \(context)")
+        
+        let entity = NSEntityDescription.entity(forEntityName: "TCBLogin", in: context)!
+        print("Entity: \(entity)")
+        
+        let object = NSManagedObject(entity: entity, insertInto: context)
+        object.setValue(Username, forKey: "username" )
+        object.setValue(Password, forKey: "password")
+        
+        do { try context.save(); print("Object: \(object)") }
+        catch { print("Failed To Store TCBLogin Object") }
+        
+        return object
+    }
+    
+    func setWebMailLogin(Username: String, Password: String) -> NSManagedObject
+    {
+        let context = appDelegate.persistentContainer.viewContext
+        print("Context: \(context)")
+        
+        let entity = NSEntityDescription.entity(forEntityName: "WebMailLogin", in: context)!
+        print("Entity: \(entity)")
+        
+        let object = NSManagedObject(entity: entity, insertInto: context)
+        object.setValue(Username, forKey: "username" )
+        object.setValue(Password, forKey: "password")
+        
+        do { try context.save(); print("Object: \(object)") }
+        catch { print("Failed To Store TCBLogin Object") }
+        
+        return object
+    }
     
     func alert(Title: String, Message: String)
     {
@@ -55,6 +139,15 @@ extension UIViewController
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func hideKeyboardWhenTappedAround()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() { view.endEditing(true) }
 }
 
 

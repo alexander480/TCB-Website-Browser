@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nA-Dj-8Um">
-                                        <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                                        <rect key="frame" x="0.0" y="57.5" width="375" height="609.5"/>
                                         <gestureRecognizers/>
                                         <wkWebViewConfiguration key="configuration">
                                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -86,7 +86,7 @@
                                     <constraint firstAttribute="bottom" secondItem="f55-Ru-Omg" secondAttribute="bottom" constant="10" id="aZf-B0-pHH"/>
                                     <constraint firstAttribute="bottom" secondItem="BlK-RS-aun" secondAttribute="bottom" id="bOS-aj-o5O"/>
                                     <constraint firstItem="eeG-dQ-oRM" firstAttribute="top" secondItem="X3z-IQ-taM" secondAttribute="top" id="bmC-Pj-ksw"/>
-                                    <constraint firstItem="4nA-Dj-8Um" firstAttribute="top" secondItem="kql-lJ-XWs" secondAttribute="bottom" constant="7.5" id="c8O-aL-r6h"/>
+                                    <constraint firstItem="4nA-Dj-8Um" firstAttribute="top" secondItem="kql-lJ-XWs" secondAttribute="bottom" id="c8O-aL-r6h"/>
                                     <constraint firstAttribute="width" constant="375" id="fkM-bx-PvW"/>
                                     <constraint firstAttribute="trailing" secondItem="kql-lJ-XWs" secondAttribute="trailing" id="gq9-tc-KLH"/>
                                     <constraint firstItem="BlK-RS-aun" firstAttribute="leading" secondItem="X3z-IQ-taM" secondAttribute="leading" id="h6e-n1-yKW"/>

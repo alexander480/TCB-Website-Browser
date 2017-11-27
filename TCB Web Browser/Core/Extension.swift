@@ -83,7 +83,7 @@ extension UIViewController
         return object
     }
     
-    func fetchCoreDate(EntityName: String) -> Array<NSManagedObject>
+    func fetchCoreData(EntityName: String) -> Array<NSManagedObject>
     {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: EntityName)
         let context = appDelegate.persistentContainer.viewContext
@@ -94,6 +94,14 @@ extension UIViewController
         catch let error as NSError { print("Could not fetch. \(error), \(error.userInfo)") }
         
         return result
+    }
+    
+    func deleteHistoryData()
+    {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "History")
+        let context = appDelegate.persistentContainer.viewContext
+        
+        if let result = try? context.fetch(fetchRequest) { for object in result { context.delete(object) } }
     }
     
     func setTCBLogin(Username: String, Password: String) -> NSManagedObject

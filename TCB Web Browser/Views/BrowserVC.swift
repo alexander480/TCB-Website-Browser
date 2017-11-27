@@ -11,9 +11,10 @@ import WebKit
 import CoreFoundation
 import CoreData
 
-let pref = WKPreferences()
-
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+let pref = WKPreferences()
+let privateRequest = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
 
 var history = [NSManagedObject]()
 
@@ -23,6 +24,7 @@ var urlFromHistory = ""
 var engine = "Google"
 var cookies = true
 var js = true
+var pb = false
 
 class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource
 {
@@ -46,11 +48,9 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     {
         dismissAllPopups()
     }
-    
-    
+
     // ------- Main Popup ------- //
-    
-    // ------- Elements ------- //
+
     @IBOutlet weak var popup: UIView!
     @IBOutlet weak var popupCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var homeButton: UIButton!
@@ -59,7 +59,6 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
 
-    // ------- Actions ------- //
     @IBAction func homeButtonAction(_ sender: Any) { dismissAllPopups(); goHome(); }
     @IBAction func mailButtonAction(_ sender: Any) { dismissAllPopups(); goEmail(); }
     @IBAction func reloadButtonAction(_ sender: Any) { dismissAllPopups(); refresh(); }
@@ -67,17 +66,14 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     @IBAction func forwardButtonAction(_ sender: Any) { dismissAllPopups(); goForward(); }
     @IBAction func showAdvancedPopup(_ sender: Any) { revealPopup(isAdvanced: true) }
 
-    
     // ------- Advanced Popup  ------- //
-    
-    // ------- Elements ------- //
+
     @IBOutlet weak var advancedPopup: UIView!
     @IBOutlet weak var advancedCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var jsButton: UIButton!
     @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
 
-    // ------- Actions ------- //
     @IBAction func jsButtonAction(_ sender: Any) { toggleJs(); dismissAllPopups(); }
     @IBAction func trashButton(_ sender: Any) { clearWebData(); dismissAllPopups(); }
     @IBAction func searchButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealSearchPopup(); }
@@ -85,8 +81,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     @IBAction func dismissAdvancedPopup(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "DOWN"); revealPopup(isAdvanced: false) }
     
     // ------- Search Popup ------- //
-    
-    // ------- Elements ------- //
+
     @IBOutlet weak var searchPopup: UIView!
     @IBOutlet weak var searchCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var googleButton: UIButton!
@@ -94,7 +89,6 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     @IBOutlet weak var bingButton: UIButton!
     @IBOutlet weak var duckButton: UIButton!
     
-    // ------- Actions ------- //
     @IBAction func googleButtonAction(_ sender: Any)
     {
         engine = "Google"
@@ -106,7 +100,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
         
         dismissAllPopups()
     }
-    
+
     @IBAction func yahooButtonAction(_ sender: Any)
     {
         engine = "Yahoo"
@@ -142,6 +136,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
         
         dismissAllPopups()
     }
+    
     @IBAction func dismisSearchAction(_ sender: Any) { dismissPopup(Constraint: searchCenterConstraint, Direction: "DOWN"); revealPopup(isAdvanced: true); }
     
     // ------- View Did Load ------- //
@@ -154,7 +149,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        let transform = CGAffineTransform(scaleX: 1.0, y: 3.0)
+        let transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
         progress.transform = transform
         
         self.dismissPopupButton.alpha = 0.0
@@ -163,14 +158,22 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
         self.advancedCenterConstraint.constant = 750
         self.searchCenterConstraint.constant = 750
         self.historyCenterConstraint.constant = 750
-            
+    
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
         
-        if fromHistory { webView.load(URLRequest(url: URL(string: urlFromHistory)!)); fromHistory = false }
-        else { webView.load(URLRequest(url: URL(string: "https://tcb.ai/")!)) }
+        if fromHistory
+        {
+            if pb { webView.load(URLRequest(url: URL(string: urlFromHistory)!)); fromHistory = false;  }
+            else { webView.load(URLRequest(url: URL(string: urlFromHistory)!, cachePolicy: privateRequest)); fromHistory = false; }
+        }
+        else
+        {
+            if pb {  webView.load(URLRequest(url: URL(string: "https://tcb.ai/")!, cachePolicy: privateRequest)) }
+            else { webView.load(URLRequest(url: URL(string: "https://tcb.ai/")!)) }
+        }
         
         pref.javaScriptEnabled = js
     }
@@ -178,7 +181,12 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     // ------- Progress Monitoring Functionn ------- //
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
-    { if keyPath == "estimatedProgress" { progress.progress = Float(webView.estimatedProgress) } }
+    {
+        if keyPath == "estimatedProgress"
+        {
+            progress.progress = Float(webView.estimatedProgress)
+        }
+    }
     
     // ------- Search Bar Handler ------- //
     
@@ -192,18 +200,19 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
             let searchString = rawString.urlFormat(searchEngine: engine)
             if let searchURL = URL(string: searchString)
             {
-                webView.load(URLRequest(url: searchURL) )
-                
-                let date = Date()
-                let historyObject = self.historyObject(URL: searchString, Date: date)
-                if historyObject.value(forKey: "url") == nil
+                if pb
                 {
-                    print("Error Creating History Object")
+                    webView.load(URLRequest(url: searchURL, cachePolicy: privateRequest))
+                    deleteCookies()
                 }
                 else
                 {
-                    history.append(historyObject)
-                    print(historyObject)
+                    webView.load(URLRequest(url: searchURL))
+                    
+                    let historyObject = self.historyObject(URL: searchString, Date: Date())
+                    
+                    if historyObject.value(forKey: "url") == nil { print("Error Creating History Object") }
+                    else { history.append(historyObject); print(historyObject) }
                 }
             }
         }
@@ -222,19 +231,14 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     
     func clearWebData()
     {
-        let storage = HTTPCookieStorage.shared
-        for cookie in storage.cookies! { storage.deleteCookie(cookie) }
-        
-        let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
-        let date = NSDate(timeIntervalSince1970: 0)
-        
-        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{ })
-        
-        history = [NSManagedObject]()
-        
-        self.alert(Title: "Browsing Data Deleted", Message: "")
+        deleteCookies()
+        history.removeAll()
+        self.deleteHistoryData()
         dismissAllPopups()
+        self.alert(Title: "Browsing Data Deleted", Message: "Website history and cookies have been deleted.")
     }
+    
+    func togglePrivateBrowsing() { if pb { pb = false } else { pb = true } }
     
     func toggleJs()
     {
@@ -256,6 +260,17 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
             self.alert(Title: "Javascript Enabled", Message: "")
             dismissAllPopups()
         }
+    }
+    
+    func deleteCookies()
+    {
+        let storage = HTTPCookieStorage.shared
+        for cookie in storage.cookies! { storage.deleteCookie(cookie) }
+        
+        let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
+        let date = NSDate(timeIntervalSince1970: 0)
+        
+        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{ })
     }
     
     func revealPopup(isAdvanced: Bool)
@@ -299,7 +314,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     
     func revealHistoryPopup()
     {
-        history = fetchCoreDate(EntityName: "History")
+        history = fetchCoreData(EntityName: "History")
         
         tableView.reloadData()
         

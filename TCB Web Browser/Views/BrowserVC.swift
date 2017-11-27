@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import CoreFoundation
 import CoreData
 
 let pref = WKPreferences()
@@ -272,8 +273,6 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
         }
         else
         {
-            takeScreenshot()
-            
             self.popupCenterConstraint.constant = 0
             self.dismissPopupButton.alpha = 1.0
             
@@ -375,27 +374,6 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
         self.popupCenterConstraint.constant = 750
         self.advancedCenterConstraint.constant = -750
         self.searchCenterConstraint.constant = 750
-    }
-    
-    func takeScreenshot()
-    {
-        print("Taking Screenshot...")
-        let sixzevid = CGSize(width: 1024, height: 1100)
-        UIGraphicsBeginImageContext(sixzevid)
-        webView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let viewImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        var imageData = NSData()
-        imageData = UIImagePNGRepresentation(viewImage!)! as NSData
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let pathFolder = String(String(format:"%@", "new.png"))
-        let defaultDBPathURL = NSURL(fileURLWithPath: documentsPath).appendingPathComponent(pathFolder)
-        let defaultDBPath = "\(String(describing: defaultDBPathURL))"
-        imageData.write(toFile: defaultDBPath, atomically: true)
-        let image = UIImage(data: imageData as Data)
-        print("Done.")
-        
-        UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
     }
 }
 

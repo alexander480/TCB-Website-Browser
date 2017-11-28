@@ -14,6 +14,7 @@
 		1491E7591FB13EC000D49372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7581FB13EC000D49372 /* Assets.xcassets */; };
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
 		1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* Extension.swift */; };
+		149CD41C1FCCD8980026F9A0 /* WebKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CD41B1FCCD8980026F9A0 /* WebKitExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		1491E75B1FB13EC000D49372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1491E75D1FB13EC000D49372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1493F5331FB28AD200D0F6B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = "TCB Web Browser/Core/Extension.swift"; sourceTree = SOURCE_ROOT; };
+		149CD41B1FCCD8980026F9A0 /* WebKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				1491E7641FB13EE600D49372 /* Core */,
-				1491E7631FB13EDC00D49372 /* UI */,
 				1491E7651FB13EEC00D49372 /* Views */,
+				1491E7631FB13EDC00D49372 /* UI */,
 			);
 			path = "TCB Web Browser";
 			sourceTree = "<group>";
@@ -68,9 +70,9 @@
 		1491E7631FB13EDC00D49372 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1491E7581FB13EC000D49372 /* Assets.xcassets */,
 				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
 				1491E7551FB13EC000D49372 /* Main.storyboard */,
-				1491E7581FB13EC000D49372 /* Assets.xcassets */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -82,6 +84,7 @@
 				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
 				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
 				1493F5331FB28AD200D0F6B6 /* Extension.swift */,
+				149CD41B1FCCD8980026F9A0 /* WebKitExtensions.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			files = (
 				1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */,
 				1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */,
+				149CD41C1FCCD8980026F9A0 /* WebKitExtensions.swift in Sources */,
 				1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */,
 				1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */,
 			);

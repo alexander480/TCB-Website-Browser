@@ -13,21 +13,18 @@ import CoreData
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-let pref = WKPreferences()
-let privateRequest = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
-
-var history = [NSManagedObject]()
-
-var fromHistory = false
-var urlFromHistory = ""
-
-var engine = "Google"
-var cookies = true
-var js = true
-var pb = false
-
-class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITableViewDelegate, UITableViewDataSource
+class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigationDelegate, UITableViewDelegate, UITableViewDataSource
 {
+    let pref = WKPreferences()
+    let privateRequest = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
+    
+    var history = [NSManagedObject]() 
+    
+    var engine = "Google" // Default Search Engine //
+    var cookies = true // Save Cookies //
+    var js = true // Enable Javascript //
+    var pb = false // Private Browsing //
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var progress: UIProgressView!
@@ -68,12 +65,34 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
 
     // ------- Advanced Popup  ------- //
 
+    @IBOutlet weak var privateButton: UIButton!
     @IBOutlet weak var advancedPopup: UIView!
     @IBOutlet weak var advancedCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var jsButton: UIButton!
     @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
 
+    
+    @IBAction func privateButtonAction(_ sender: Any)
+    {
+        if pb
+        {
+            pb = false
+            privateButton.setImage(#imageLiteral(resourceName: "icons8-hide-filled-50"), for: .normal)
+            
+            self.alert(Title: "Private Browsing Disabled", Message: "")
+            self.dismissAllPopups()
+        }
+        else
+        {
+            pb = true
+            privateButton.setImage(#imageLiteral(resourceName: "icons8-hide-filled-50 (1)"), for: .normal)
+            
+            self.alert(Title: "Private Browsing Enabled", Message: "")
+            self.dismissAllPopups()
+            
+        }
+    }
     @IBAction func jsButtonAction(_ sender: Any) { toggleJs(); dismissAllPopups(); }
     @IBAction func trashButton(_ sender: Any) { clearWebData(); dismissAllPopups(); }
     @IBAction func searchButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealSearchPopup(); }
@@ -146,39 +165,26 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         
+        webView.uiDelegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        let transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
-        progress.transform = transform
-        
         self.dismissPopupButton.alpha = 0.0
-        
         self.popupCenterConstraint.constant = 750
         self.advancedCenterConstraint.constant = 750
         self.searchCenterConstraint.constant = 750
         self.historyCenterConstraint.constant = 750
-    
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         
+        progress.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
-        
-        if fromHistory
-        {
-            if pb { webView.load(URLRequest(url: URL(string: urlFromHistory)!)); fromHistory = false;  }
-            else { webView.load(URLRequest(url: URL(string: urlFromHistory)!, cachePolicy: privateRequest)); fromHistory = false; }
-        }
-        else
-        {
-            if pb {  webView.load(URLRequest(url: URL(string: "https://tcb.ai/")!, cachePolicy: privateRequest)) }
-            else { webView.load(URLRequest(url: URL(string: "https://tcb.ai/")!)) }
-        }
-        
         pref.javaScriptEnabled = js
+        
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        webView.load(URLRequest(url: URL(string: "https://tcb.ai")!))
     }
     
-    // ------- Progress Monitoring Functionn ------- //
+    // ------- Monitor Progress ------- //
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
     {
@@ -195,28 +201,18 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
         view.endEditing(true)
         webView.resignFirstResponder()
         
-        if let rawString = searchBar.text
+        if let input = searchBar.text
         {
-            let searchString = rawString.urlFormat(searchEngine: engine)
+            let searchString = input.urlFormat(searchEngine: engine)
             if let searchURL = URL(string: searchString)
             {
-                if pb
-                {
-                    webView.load(URLRequest(url: searchURL, cachePolicy: privateRequest))
-                    deleteCookies()
-                }
-                else
-                {
-                    webView.load(URLRequest(url: searchURL))
-                    
-                    let historyObject = self.historyObject(URL: searchString, Date: Date())
-                    
-                    if historyObject.value(forKey: "url") == nil { print("Error Creating History Object") }
-                    else { history.append(historyObject); print(historyObject) }
-                }
+                if pb { webView.load(URLRequest(url: searchURL, cachePolicy: privateRequest)); webView.deleteCookies(); }
+                else { webView.load(URLRequest(url: searchURL)) }
             }
         }
     }
+
+    func webViewDidFinishLoad(_ webView: UIWebView) { saveHistoryObject(WebView: webView) }
     
     // ------- Navigation Functions ------- //
     
@@ -231,46 +227,30 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     
     func clearWebData()
     {
-        deleteCookies()
-        history.removeAll()
+        self.webView.deleteCookies()
         self.deleteHistoryData()
-        dismissAllPopups()
-        self.alert(Title: "Browsing Data Deleted", Message: "Website history and cookies have been deleted.")
+        self.history.removeAll()
+        self.dismissAllPopups()
+        self.alert(Title: "Browsing Data Deleted", Message: "Website cache, history and cookies have been deleted.")
     }
-    
-    func togglePrivateBrowsing() { if pb { pb = false } else { pb = true } }
     
     func toggleJs()
     {
-        if js
-        {
-            js = false
-            jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled (1)")  , for: .normal)
-            
-            pref.javaScriptEnabled = false
-            alert(Title: "Javascript Disabled", Message: "")
-            dismissAllPopups()
-        }
-        else
-        {
-            js = true
-            jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled")  , for: .normal)
-            
-            pref.javaScriptEnabled = true
-            self.alert(Title: "Javascript Enabled", Message: "")
-            dismissAllPopups()
-        }
+        if js { js = false; pref.javaScriptEnabled = false; jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled (1)")  , for: .normal); alert(Title: "Javascript Disabled", Message: ""); }
+        else { js = true; pref.javaScriptEnabled = true; jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled")  , for: .normal); self.alert(Title: "Javascript Enabled", Message: ""); }
+        
+        dismissAllPopups()
     }
     
-    func deleteCookies()
+    func saveHistoryObject(WebView: UIWebView)
     {
-        let storage = HTTPCookieStorage.shared
-        for cookie in storage.cookies! { storage.deleteCookie(cookie) }
-        
-        let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
-        let date = NSDate(timeIntervalSince1970: 0)
-        
-        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{ })
+        if let searchString = WebView.request?.url?.absoluteString
+        {
+            let historyObject = self.historyObject(URL: searchString, Date: Date())
+            
+            if historyObject.value(forKey: "url") == nil { print("Error Creating History Object") }
+            else { history.append(historyObject); print(historyObject) }
+        }
     }
     
     func revealPopup(isAdvanced: Bool)
@@ -282,40 +262,40 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
             self.advancedCenterConstraint.constant = 0
             self.dismissPopupButton.alpha = 1.0
             
-            UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
+            if js { jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled")  , for: .normal) }
+            else { jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled (1)")  , for: .normal) }
             
-            if js { jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled")  , for: .normal) } else { jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled (1)")  , for: .normal) }
+            UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
         }
         else
         {
             self.popupCenterConstraint.constant = 0
             self.dismissPopupButton.alpha = 1.0
             
-            UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
-            
             if webView.canGoBack { backButton.isEnabled = true } else { backButton.isEnabled = false }
             if webView.canGoForward { forwardButton.isEnabled = true } else { forwardButton.isEnabled = false }
+            
+            UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
         }
     }
     
     func revealSearchPopup()
     {
         self.advancedCenterConstraint.constant = -750
-        self.searchCenterConstraint.constant = 0
-        
         self.dismissPopupButton.alpha = 1.0
-        UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
+        self.searchCenterConstraint.constant = 0
         
         if engine == "Google" { googleButton.setImage(#imageLiteral(resourceName: "icons8-google (3)"), for: .normal) }
         else if engine == "Yahoo" { yahooButton.setImage(#imageLiteral(resourceName: "icons8-yahoo (1)"), for: .normal) }
         else if engine == "Bing" { bingButton.setImage(#imageLiteral(resourceName: "icons8-bing (2)"), for: .normal) }
         else if engine == "DuckDuckGo" { duckButton.setImage(#imageLiteral(resourceName: "icons8-duckduckgo (1)"), for: .normal) }
+        
+        UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
     }
     
     func revealHistoryPopup()
     {
         history = fetchCoreData(EntityName: "History")
-        
         tableView.reloadData()
         
         self.advancedCenterConstraint.constant = -750
@@ -337,16 +317,18 @@ class BrowserVC: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITab
     
     func dismissPopup(Constraint: NSLayoutConstraint?, Direction: String?)
     {
-        var direction = 0
-        
-        if Direction == "UP" { direction = -750 }
-        else if Direction == "DOWN" { direction = 750 }
-        
-        Constraint!.constant = CGFloat(direction)
-        
-        self.dismissPopupButton.alpha = 0.0
-        
-        UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
+        if Direction == "UP"
+        {
+            self.dismissPopupButton.alpha = 0.0
+            Constraint!.constant = CGFloat(-750)
+            UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
+        }
+        else if Direction == "DOWN"
+        {
+            self.dismissPopupButton.alpha = 0.0
+            Constraint!.constant = CGFloat(750)
+            UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
+        }
     }
     
     // ------- Table View ------- //

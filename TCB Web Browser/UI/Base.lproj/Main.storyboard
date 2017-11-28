@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -181,13 +180,12 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Q3-Qy-A6A">
-                                <rect key="frame" x="67" y="153.5" width="240" height="360"/>
+                                <rect key="frame" x="67" y="-596.5" width="240" height="360"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyK-E5-Ful" userLabel="Cookies">
                                         <rect key="frame" x="120" y="120" width="120" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="427-aw-Od9"/>
-                                            <constraint firstAttribute="width" secondItem="EyK-E5-Ful" secondAttribute="height" multiplier="1:1" id="4zf-Yt-Lam"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="A1B-P7-vq6"/>
                                         </constraints>
                                         <state key="normal" image="icons8-trash-can"/>
@@ -198,7 +196,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzs-R8-ftj" userLabel="History">
                                         <rect key="frame" x="0.0" y="120" width="120" height="120"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="gzs-R8-ftj" secondAttribute="height" multiplier="1:1" id="BhN-IK-rGy"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Clk-a9-ItI"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="jIs-iK-H8f"/>
                                         </constraints>
@@ -212,7 +209,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="L5A-U5-wNG"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="eWN-Ut-YDF"/>
-                                            <constraint firstAttribute="width" secondItem="qz5-1k-0zU" secondAttribute="height" multiplier="1:1" id="n5J-94-hab"/>
                                         </constraints>
                                         <state key="normal" image="icons8-hide-filled-50"/>
                                         <connections>
@@ -224,7 +220,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="1DB-f2-nNI"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="8G6-Re-KJt"/>
-                                            <constraint firstAttribute="width" secondItem="Ev4-ZU-toE" secondAttribute="height" multiplier="1:1" id="zrW-fc-xMk"/>
                                         </constraints>
                                         <state key="normal" image="icons8-search"/>
                                         <connections>
@@ -234,7 +229,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibx-k2-JlE" userLabel="Close">
                                         <rect key="frame" x="120" y="240" width="120" height="120"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="ibx-k2-JlE" secondAttribute="height" multiplier="1:1" id="UCN-AO-ydy"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="kJL-5Q-wnC"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="qsG-B4-HA5"/>
                                         </constraints>
@@ -248,7 +242,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="9ul-j9-l81"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="cbq-7x-Sc3"/>
-                                            <constraint firstAttribute="width" secondItem="d0X-mY-CyC" secondAttribute="height" multiplier="1:1" id="zNe-jy-IZd"/>
                                         </constraints>
                                         <state key="normal" image="icons8-javascript-filled"/>
                                         <connections>
@@ -427,7 +420,7 @@
                             <constraint firstItem="fOk-Jd-r76" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="13.573411166235246" id="2Qi-OL-BVt"/>
                             <constraint firstItem="X3z-IQ-taM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7OA-ge-ae3"/>
                             <constraint firstItem="fOk-Jd-r76" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-1.4265888337646686" id="8uZ-KG-gGh"/>
-                            <constraint firstItem="0Q3-Qy-A6A" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="FTe-8t-zoV"/>
+                            <constraint firstItem="0Q3-Qy-A6A" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-750" id="FTe-8t-zoV"/>
                             <constraint firstItem="G8t-md-b8N" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="750" id="MDc-qM-pUc"/>
                             <constraint firstItem="uGw-uh-v2w" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="750" id="SVd-JA-31g"/>
                             <constraint firstItem="fOk-Jd-r76" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-750" id="WxY-nT-aOK"/>

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import WebKit
 import UIKit
 
 extension UISegmentedControl
@@ -65,22 +66,16 @@ extension String
 
 extension UIViewController
 {
-    func historyObject(URL: String, Date: Date) -> NSManagedObject
+    func historyObject(URL: String, Date: Date) -> NSManagedObject?
     {
         let context = appDelegate.persistentContainer.viewContext
-        print("Context: \(context)")
-        
         let entity = NSEntityDescription.entity(forEntityName: "History", in: context)!
-        print("Entity: \(entity)")
-        
         let object = NSManagedObject(entity: entity, insertInto: context)
             object.setValue(URL, forKey: "url" )
             object.setValue(Date, forKey: "date")
         
-        do { try context.save(); print("Object: \(object)") }
-        catch { print("Failed To Store History Object") }
-        
-        return object
+        do { try context.save(); if object.value(forKey: "url") != nil { print("Succesfully Saved History Object."); return object } else { print("Error Saving History Object - #00"); return nil } }
+        catch { print("Error Saving History Object - #01"); return nil }
     }
     
     func fetchCoreData(EntityName: String) -> Array<NSManagedObject>

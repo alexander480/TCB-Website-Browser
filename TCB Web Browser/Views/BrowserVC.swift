@@ -16,7 +16,7 @@ let appDelegate = UIApplication.shared.delegate as! AppDelegate
 class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigationDelegate, UITableViewDelegate, UITableViewDataSource
 {
     let pref = WKPreferences()
-    let privateRequest = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
+    
     
     var history = [NSManagedObject]() 
     
@@ -187,12 +187,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     // ------- Monitor Progress ------- //
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
-    {
-        if keyPath == "estimatedProgress"
-        {
-            progress.progress = Float(webView.estimatedProgress)
-        }
-    }
+    { if keyPath == "estimatedProgress" { progress.progress = Float(webView.estimatedProgress) } }
     
     // ------- Search Bar Handler ------- //
     
@@ -204,15 +199,22 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         if let input = searchBar.text
         {
             let searchString = input.urlFormat(searchEngine: engine)
-            if let searchURL = URL(string: searchString)
-            {
-                if pb { webView.load(URLRequest(url: searchURL, cachePolicy: privateRequest)); webView.deleteCookies(); }
-                else { webView.load(URLRequest(url: searchURL)) }
+            if let request = webView.getRequest(urlString: searchString, Private: pb) { webView.load(request) }
+        }
+    }
+    
+    // ------- Website Finished Loading ------- //
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
+    {
+        if let url = webView.url?.absoluteString
+        {
+             if let historyObject = self.historyObject(URL: url, Date: Date())
+             {
+                history.append(historyObject)
             }
         }
     }
-
-    func webViewDidFinishLoad(_ webView: UIWebView) { saveHistoryObject(WebView: webView) }
     
     // ------- Navigation Functions ------- //
     
@@ -227,7 +229,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     
     func clearWebData()
     {
-        self.webView.deleteCookies()
+        self.webView.cleanUp()
         self.deleteHistoryData()
         self.history.removeAll()
         self.dismissAllPopups()
@@ -240,17 +242,6 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         else { js = true; pref.javaScriptEnabled = true; jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled")  , for: .normal); self.alert(Title: "Javascript Enabled", Message: ""); }
         
         dismissAllPopups()
-    }
-    
-    func saveHistoryObject(WebView: UIWebView)
-    {
-        if let searchString = WebView.request?.url?.absoluteString
-        {
-            let historyObject = self.historyObject(URL: searchString, Date: Date())
-            
-            if historyObject.value(forKey: "url") == nil { print("Error Creating History Object") }
-            else { history.append(historyObject); print(historyObject) }
-        }
     }
     
     func revealPopup(isAdvanced: Bool)

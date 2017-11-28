@@ -209,7 +209,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     {
         if let url = webView.url?.absoluteString
         {
-             if let historyObject = self.historyObject(URL: url, Date: Date())
+             if let historyObject = self.webView.historyObject(URL: url, Date: Date())
              {
                 history.append(historyObject)
             }
@@ -229,9 +229,10 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     
     func clearWebData()
     {
-        self.webView.cleanUp()
-        self.deleteHistoryData()
+        self.webView.clearData()
+        self.webView.clearHistory()
         self.history.removeAll()
+        
         self.dismissAllPopups()
         self.alert(Title: "Browsing Data Deleted", Message: "Website cache, history and cookies have been deleted.")
     }
@@ -286,7 +287,8 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     
     func revealHistoryPopup()
     {
-        history = fetchCoreData(EntityName: "History")
+        if let historyData = self.webView.fetchHistory() { self.history = historyData }
+        
         tableView.reloadData()
         
         self.advancedCenterConstraint.constant = -750

@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1483932A1FB659300089D95E /* Model.xcdatamodeld */; };
+		1490957B1FD762E3000BB714 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1490957A1FD762E3000BB714 /* PasswordManager.swift */; };
+		1490957F1FD764E8000BB714 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1490957E1FD764E8000BB714 /* StringExt.swift */; };
+		149095811FD76529000BB714 /* UISegmentedControlExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149095801FD76529000BB714 /* UISegmentedControlExt.swift */; };
 		1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7511FB13EC000D49372 /* AppDelegate.swift */; };
 		1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7531FB13EC000D49372 /* BrowserVC.swift */; };
 		1491E7571FB13EC000D49372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7551FB13EC000D49372 /* Main.storyboard */; };
 		1491E7591FB13EC000D49372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1491E7581FB13EC000D49372 /* Assets.xcassets */; };
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
-		1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* Extension.swift */; };
-		149CD41C1FCCD8980026F9A0 /* WKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CD41B1FCCD8980026F9A0 /* WKExtensions.swift */; };
+		1493F5341FB28AD200D0F6B6 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* UIViewControllerExt.swift */; };
+		149CD41C1FCCD8980026F9A0 /* WKWebViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CD41B1FCCD8980026F9A0 /* WKWebViewExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1483932B1FB659300089D95E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		1490957A1FD762E3000BB714 /* PasswordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordManager.swift; sourceTree = "<group>"; };
+		1490957E1FD764E8000BB714 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		149095801FD76529000BB714 /* UISegmentedControlExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControlExt.swift; sourceTree = "<group>"; };
 		1491E74E1FB13EC000D49372 /* TCB Web Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCB Web Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1491E7511FB13EC000D49372 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1491E7531FB13EC000D49372 /* BrowserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserVC.swift; sourceTree = "<group>"; };
@@ -26,8 +32,8 @@
 		1491E7581FB13EC000D49372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1491E75B1FB13EC000D49372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1491E75D1FB13EC000D49372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1493F5331FB28AD200D0F6B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = "TCB Web Browser/Core/Extension.swift"; sourceTree = SOURCE_ROOT; };
-		149CD41B1FCCD8980026F9A0 /* WKExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKExtensions.swift; sourceTree = "<group>"; };
+		1493F5331FB28AD200D0F6B6 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewControllerExt.swift; path = "TCB Web Browser/Extensions/UIViewControllerExt.swift"; sourceTree = SOURCE_ROOT; };
+		149CD41B1FCCD8980026F9A0 /* WKWebViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +47,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1490957C1FD76387000BB714 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1493F5331FB28AD200D0F6B6 /* UIViewControllerExt.swift */,
+				149CD41B1FCCD8980026F9A0 /* WKWebViewExt.swift */,
+				1490957E1FD764E8000BB714 /* StringExt.swift */,
+				149095801FD76529000BB714 /* UISegmentedControlExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1490957D1FD76396000BB714 /* Password Manager */ = {
+			isa = PBXGroup;
+			children = (
+				1490957A1FD762E3000BB714 /* PasswordManager.swift */,
+			);
+			path = "Password Manager";
+			sourceTree = "<group>";
+		};
 		1491E7451FB13EC000D49372 = {
 			isa = PBXGroup;
 			children = (
@@ -61,30 +86,22 @@
 			isa = PBXGroup;
 			children = (
 				1491E7641FB13EE600D49372 /* Core */,
+				1491E7551FB13EC000D49372 /* Main.storyboard */,
+				1491E7581FB13EC000D49372 /* Assets.xcassets */,
 				1491E7651FB13EEC00D49372 /* Views */,
-				1491E7631FB13EDC00D49372 /* UI */,
+				1490957D1FD76396000BB714 /* Password Manager */,
+				1490957C1FD76387000BB714 /* Extensions */,
 			);
 			path = "TCB Web Browser";
-			sourceTree = "<group>";
-		};
-		1491E7631FB13EDC00D49372 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				1491E7581FB13EC000D49372 /* Assets.xcassets */,
-				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
-				1491E7551FB13EC000D49372 /* Main.storyboard */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		1491E7641FB13EE600D49372 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
 				1491E75D1FB13EC000D49372 /* Info.plist */,
 				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
 				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
-				1493F5331FB28AD200D0F6B6 /* Extension.swift */,
-				149CD41B1FCCD8980026F9A0 /* WKExtensions.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -169,10 +186,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1490957B1FD762E3000BB714 /* PasswordManager.swift in Sources */,
 				1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */,
+				149095811FD76529000BB714 /* UISegmentedControlExt.swift in Sources */,
 				1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */,
-				149CD41C1FCCD8980026F9A0 /* WKExtensions.swift in Sources */,
-				1493F5341FB28AD200D0F6B6 /* Extension.swift in Sources */,
+				1490957F1FD764E8000BB714 /* StringExt.swift in Sources */,
+				149CD41C1FCCD8980026F9A0 /* WKWebViewExt.swift in Sources */,
+				1493F5341FB28AD200D0F6B6 /* UIViewControllerExt.swift in Sources */,
 				1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

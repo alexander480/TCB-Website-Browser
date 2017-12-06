@@ -47,14 +47,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		14032C4B1FD7682E00DA9105 /* Browser */ = {
-			isa = PBXGroup;
-			children = (
-				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
-			);
-			path = Browser;
-			sourceTree = "<group>";
-		};
 		1490957C1FD76387000BB714 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +87,8 @@
 			children = (
 				1491E7551FB13EC000D49372 /* Main.storyboard */,
 				1491E7581FB13EC000D49372 /* Assets.xcassets */,
-				1491E7641FB13EE600D49372 /* Core */,
 				1491E7651FB13EEC00D49372 /* Views */,
+				1491E7641FB13EE600D49372 /* Core */,
 				1490957D1FD76396000BB714 /* Password Manager */,
 				1490957C1FD76387000BB714 /* Extensions */,
 			);
@@ -117,7 +109,7 @@
 		1491E7651FB13EEC00D49372 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				14032C4B1FD7682E00DA9105 /* Browser */,
+				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

@@ -62,7 +62,7 @@
                                             <action selector="showPopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BLG-fj-X3J"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BlK-RS-aun">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BlK-RS-aun">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="667" id="1sr-Xn-3J5"/>

@@ -23,8 +23,8 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     var history = [NSManagedObject]()
     let pref = WKPreferences()
     
-    var isPrivate = false
     var engine = "Google"
+    var isPrivate = false
     var cookies = true
     var js = true
     
@@ -155,6 +155,10 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     
     @IBAction func dismisSearchAction(_ sender: Any) { dismissPopup(Constraint: searchCenterConstraint, Direction: "DOWN"); revealPopup(isAdvanced: true); }
     
+    
+    
+    
+    
     // -------------- View Did Load -------------- //
     
     override func viewDidLoad()
@@ -183,6 +187,11 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         webView.load(URLRequest(url: URL(string: "https://tcb.ai")!))
     }
+    
+    
+    
+    
+    
     
     // -------------- Monitor Loading Progress -------------- //
     

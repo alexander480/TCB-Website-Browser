@@ -47,13 +47,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14032C4B1FD7682E00DA9105 /* Browser */ = {
+			isa = PBXGroup;
+			children = (
+				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
+			);
+			path = Browser;
+			sourceTree = "<group>";
+		};
 		1490957C1FD76387000BB714 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				149095801FD76529000BB714 /* SegmentedControlExt.swift */,
 				1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */,
 				149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */,
 				1490957E1FD764E8000BB714 /* StringExt.swift */,
-				149095801FD76529000BB714 /* SegmentedControlExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -109,7 +117,7 @@
 		1491E7651FB13EEC00D49372 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
+				14032C4B1FD7682E00DA9105 /* Browser */,
 			);
 			path = Views;
 			sourceTree = "<group>";

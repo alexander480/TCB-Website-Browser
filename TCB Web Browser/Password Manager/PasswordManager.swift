@@ -16,7 +16,6 @@ class PasswordManager: NSObject
     
     // ------ Save New Login Data ------ //
     // ------------------------------ //
-    
     func saveLoginFor(LoginObject: LoginObject)
     {
         let context = appDelegate.persistentContainer.viewContext
@@ -33,7 +32,6 @@ class PasswordManager: NSObject
     
     // ------ Update Saved Login Data ------ //
     // ---------------------------------- //
-    
     func updateLoginFor(LoginObject: LoginObject)
     {
         let context = appDelegate.persistentContainer.viewContext
@@ -52,7 +50,6 @@ class PasswordManager: NSObject
     
     // ------ Return Login Data For URL ------ //
     // ----------------------------------- //
-    
     func fetchLoginFor(URL: String) -> LoginObject?
     {
         let context = appDelegate.persistentContainer.viewContext
@@ -82,7 +79,6 @@ class PasswordManager: NSObject
     
     // ------ Return All Login Objects ------ //
     // ------------------------------- //
-    
     func fetchLoginObjects() -> [LoginObject]
     {
         let context = appDelegate.persistentContainer.viewContext
@@ -112,7 +108,6 @@ class PasswordManager: NSObject
 
 // ------ LoginObject Class ------ //
 // --------------------------- //
-
 class LoginObject: NSObject
 {
     var website: String?

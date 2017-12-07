@@ -12,11 +12,13 @@ import CoreFoundation
 import CoreData
 
 // -------------- Global Variables -------------- //
+// ------------------------------------------ //
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let context = appDelegate.persistentContainer.viewContext
 
 // -------------- Start View Controller Class -------------- //
+// -------------------------------------------------- //
 
 class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigationDelegate, UITableViewDelegate, UITableViewDataSource
 {
@@ -47,7 +49,8 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     @IBAction func dismissPopup(_ sender: Any) { dismissAllPopups() }
 
     // -------------- Main Popup Fun -------------- //
-
+    // ------------------------------------------ //
+    
     @IBOutlet weak var popup: UIView!
     @IBOutlet weak var popupCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var homeButton: UIButton!
@@ -64,7 +67,8 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     @IBAction func showAdvancedPopup(_ sender: Any) { revealPopup(isAdvanced: true) }
 
     // -------------- Advanced Popup Functions  -------------- //
-
+    // --------------------------------------------------- //
+    
     @IBOutlet weak var privateButton: UIButton!
     @IBOutlet weak var advancedPopup: UIView!
     @IBOutlet weak var advancedCenterConstraint: NSLayoutConstraint!
@@ -97,7 +101,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     @IBAction func dismissAdvancedPopup(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "DOWN"); revealPopup(isAdvanced: false) }
     
     // -------------- Search Popup Functions -------------- //
-
+    // ------------------------------------------------ //
     @IBOutlet weak var searchPopup: UIView!
     @IBOutlet weak var searchCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var googleButton: UIButton!
@@ -153,11 +157,11 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         dismissAllPopups()
     }
     
-    @IBAction func dismisSearchAction(_ sender: Any) { dismissPopup(Constraint: searchCenterConstraint, Direction: "DOWN"); revealPopup(isAdvanced: true); }
+    @IBAction func dismisSearchAction(_ sender: Any) { dismissPopup(Constraint: searchCenterConstraint, Direction: "UP"); revealPopup(isAdvanced: true); }
 
     
     // -------------- View Did Load -------------- //
-    
+    // ---------------------------------------- //
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -185,11 +189,6 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         webView.load(URLRequest(url: URL(string: "https://tcb.ai")!))
     }
     
-    
-    
-    
-    
-    
     // -------------- Monitor Loading Progress -------------- //
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
@@ -213,15 +212,12 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
     {
-        if isPrivate
-        {
-            print("Private Mode Active - Not Saving History Data")
-        }
+        if (isPrivate) { print("Private Mode Active - Not Saving History Data") }
         else
         {
             if let url = webView.url?.absoluteString
             {
-                if url == "https://tcb.ai/" || url == "https://www.tcb.ai/" { print("Visted Home Page - Not Saving To History Data"); return }
+                if (url == "https://tcb.ai/" || url == "https://www.tcb.ai/" || url == "http://tcb.ai/" || url == "http://tcb.ai/") { print("Visted Home Page - Not Saving To History Data"); return }
                 else {  if let historyObject = self.webView.historyObject(URL: url, Date: Date()) { history.append(historyObject); print(historyObject) } }
             }
         }
@@ -290,8 +286,6 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         self.deleteCache(FromPastDays: FromPastDays)
         self.deleteSessionData(FromPastDays: FromPastDays)
     }
-    
-    
     
     // -------------- Browser Settings Functions -------------- //
     
@@ -403,7 +397,6 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
             return cell!
         }
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         dismissAllPopups()

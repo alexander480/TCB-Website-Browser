@@ -86,24 +86,24 @@
 			isa = PBXGroup;
 			children = (
 				1491E7551FB13EC000D49372 /* Main.storyboard */,
-				1491E7581FB13EC000D49372 /* Assets.xcassets */,
 				1491E7651FB13EEC00D49372 /* Views */,
-				1491E7641FB13EE600D49372 /* Core */,
 				1490957D1FD76396000BB714 /* Password Manager */,
 				1490957C1FD76387000BB714 /* Extensions */,
+				1491E7641FB13EE600D49372 /* Other */,
 			);
 			path = "TCB Web Browser";
 			sourceTree = "<group>";
 		};
-		1491E7641FB13EE600D49372 /* Core */ = {
+		1491E7641FB13EE600D49372 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				1491E7581FB13EC000D49372 /* Assets.xcassets */,
 				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
 				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
 				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
 				1491E75D1FB13EC000D49372 /* Info.plist */,
 			);
-			path = Core;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		1491E7651FB13EEC00D49372 /* Views */ = {

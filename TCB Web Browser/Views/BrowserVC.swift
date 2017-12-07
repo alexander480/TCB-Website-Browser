@@ -154,10 +154,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     }
     
     @IBAction func dismisSearchAction(_ sender: Any) { dismissPopup(Constraint: searchCenterConstraint, Direction: "DOWN"); revealPopup(isAdvanced: true); }
-    
-    
-    
-    
+
     
     // -------------- View Did Load -------------- //
     

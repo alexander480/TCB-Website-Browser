@@ -21,7 +21,7 @@ class PasswordManager: NSObject
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "LoginEntity", in: context)!
         let object = NSManagedObject(entity: entity, insertInto: context)
-        object.setValue(LoginObject.website, forKey: "website" )
+        object.setValue(LoginObject.title, forKey: "website" )
         object.setValue(LoginObject.url, forKey: "url" )
         object.setValue(LoginObject.username, forKey: "username")
         object.setValue(LoginObject.password, forKey: "password" )
@@ -37,7 +37,7 @@ class PasswordManager: NSObject
         let context = appDelegate.persistentContainer.viewContext
         if let object = LoginObject.coreObject
         {
-            object.setValue(LoginObject.website, forKey: "website" )
+            object.setValue(LoginObject.title, forKey: "website" )
             object.setValue(LoginObject.url, forKey: "url" )
             object.setValue(LoginObject.username, forKey: "username" )
             object.setValue(LoginObject.password, forKey: "password" )
@@ -63,12 +63,12 @@ class PasswordManager: NSObject
             {
                 if object.value(forKey: "url") as! String == URL
                 {
-                    let website = object.value(forKey: "website") as! String
+                    let title = object.value(forKey: "website") as! String
                     let url = object.value(forKey: "url") as! String
                     let username = object.value(forKey: "username") as! String
                     let password = object.value(forKey: "password") as! String
                     
-                    loginObject = LoginObject(CoreObject: object, Website: website, URL: url, Username: username, Password: password )
+                    loginObject = LoginObject(CoreObject: object, Title: title, URL: url, Username: username, Password: password )
                 }
             }
         }
@@ -91,12 +91,12 @@ class PasswordManager: NSObject
             let result = try context.fetch(fetchRequest)
             for object in result
             {
-                let website = object.value(forKey: "website") as! String
+                let title = object.value(forKey: "website") as! String
                 let url = object.value(forKey: "url") as! String
                 let username = object.value(forKey: "username") as! String
                 let password = object.value(forKey: "password") as! String
                 
-                let buf = LoginObject(CoreObject: object, Website: website, URL: url, Username: username, Password: password)
+                let buf = LoginObject(CoreObject: object, Title: title, URL: url, Username: username, Password: password)
                 bufArray.append(buf)
             }
         }
@@ -109,15 +109,15 @@ class PasswordManager: NSObject
 // --------------------------- //
 class LoginObject: NSObject
 {
-    var website: String?
+    var title: String?
     var url: String!
     var username: String!
     var password: String!
     var coreObject: NSManagedObject?
     
-    init(CoreObject: NSManagedObject?, Website: String?, URL: String, Username: String, Password: String)
+    init(CoreObject: NSManagedObject?, Title: String?, URL: String, Username: String, Password: String)
     {
-        self.website = Website
+        self.title = Title
         self.url = URL
         self.username = Username
         self.password = Password

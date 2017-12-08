@@ -18,6 +18,7 @@
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
 		1493F5341FB28AD200D0F6B6 /* ViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */; };
 		149CD41C1FCCD8980026F9A0 /* WebViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */; };
+		14E7AA8C1FDB3501006BC5AB /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7AA8B1FDB3501006BC5AB /* EmailManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		1491E75D1FB13EC000D49372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerExt.swift; path = "TCB Web Browser/Extensions/ViewControllerExt.swift"; sourceTree = SOURCE_ROOT; };
 		149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewExt.swift; sourceTree = "<group>"; };
+		14E7AA8B1FDB3501006BC5AB /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +87,9 @@
 		1491E7501FB13EC000D49372 /* TCB Web Browser */ = {
 			isa = PBXGroup;
 			children = (
-				1491E7551FB13EC000D49372 /* Main.storyboard */,
 				1491E7651FB13EEC00D49372 /* Views */,
+				14E7AA8D1FDB350A006BC5AB /* Email Manager */,
 				1490957D1FD76396000BB714 /* Password Manager */,
-				1490957C1FD76387000BB714 /* Extensions */,
 				1491E7641FB13EE600D49372 /* Other */,
 			);
 			path = "TCB Web Browser";
@@ -97,6 +98,7 @@
 		1491E7641FB13EE600D49372 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				1490957C1FD76387000BB714 /* Extensions */,
 				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
 				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
 				1491E75D1FB13EC000D49372 /* Info.plist */,
@@ -109,9 +111,18 @@
 		1491E7651FB13EEC00D49372 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1491E7551FB13EC000D49372 /* Main.storyboard */,
 				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		14E7AA8D1FDB350A006BC5AB /* Email Manager */ = {
+			isa = PBXGroup;
+			children = (
+				14E7AA8B1FDB3501006BC5AB /* EmailManager.swift */,
+			);
+			path = "Email Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +201,7 @@
 				1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */,
 				149095811FD76529000BB714 /* SegmentedControlExt.swift in Sources */,
 				1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */,
+				14E7AA8C1FDB3501006BC5AB /* EmailManager.swift in Sources */,
 				1490957F1FD764E8000BB714 /* StringExt.swift in Sources */,
 				149CD41C1FCCD8980026F9A0 /* WebViewExt.swift in Sources */,
 				1493F5341FB28AD200D0F6B6 /* ViewControllerExt.swift in Sources */,

@@ -12,6 +12,8 @@ import WebKit
 
 class PasswordManager: NSObject
 {
+    // --------- Class Variables --------- //
+    // ------------------------------- //
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     // ------ Save New Login Data ------ //
@@ -21,10 +23,10 @@ class PasswordManager: NSObject
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "LoginEntity", in: context)!
         let object = NSManagedObject(entity: entity, insertInto: context)
-        object.setValue(LoginObject.title, forKey: "website" )
-        object.setValue(LoginObject.url, forKey: "url" )
-        object.setValue(LoginObject.username, forKey: "username")
-        object.setValue(LoginObject.password, forKey: "password" )
+             object.setValue(LoginObject.title, forKey: "website" )
+             object.setValue(LoginObject.url, forKey: "url" )
+             object.setValue(LoginObject.username, forKey: "username")
+             object.setValue(LoginObject.password, forKey: "password" )
         
         do { try context.save(); print("Succesfully Saved New LoginObject") }
         catch { print("Error - Failed To Save Object Within saveLoginFor() - context.save() function failed.") }
@@ -68,7 +70,7 @@ class PasswordManager: NSObject
                     let username = object.value(forKey: "username") as! String
                     let password = object.value(forKey: "password") as! String
                     
-                    loginObject = LoginObject(CoreObject: object, Title: title, URL: url, Username: username, Password: password )
+                    loginObject = LoginObject(Title: title, CoreObject: object, URL: url, Username: username, Password: password )
                 }
             }
         }
@@ -96,14 +98,16 @@ class PasswordManager: NSObject
                 let username = object.value(forKey: "username") as! String
                 let password = object.value(forKey: "password") as! String
                 
-                let buf = LoginObject(CoreObject: object, Title: title, URL: url, Username: username, Password: password)
+                let buf = LoginObject(Title: title, CoreObject: object, URL: url, Username: username, Password: password)
                 bufArray.append(buf)
             }
         }
         catch let error as NSError { print("Could not fetch. \(error), \(error.userInfo)") }
+        
         return bufArray
     }
 }
+
 
 // ------ LoginObject Class ------ //
 // --------------------------- //
@@ -111,11 +115,13 @@ class LoginObject: NSObject
 {
     var title: String?
     var url: String!
+    
     var username: String!
     var password: String!
+    
     var coreObject: NSManagedObject?
     
-    init(CoreObject: NSManagedObject?, Title: String?, URL: String, Username: String, Password: String)
+    init(Title: String?, CoreObject: NSManagedObject?,  URL: String, Username: String, Password: String)
     {
         self.title = Title
         self.url = URL

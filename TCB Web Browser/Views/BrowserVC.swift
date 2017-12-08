@@ -48,7 +48,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     }
     @IBAction func dismissPopup(_ sender: Any) { dismissAllPopups() }
 
-    // -------------- Main Popup Fun -------------- //
+    // -------------- Main Popup -------------- //
     // ------------------------------------------ //
     
     @IBOutlet weak var popup: UIView!
@@ -66,7 +66,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     @IBAction func forwardButtonAction(_ sender: Any) { dismissAllPopups(); goForward(); }
     @IBAction func showAdvancedPopup(_ sender: Any) { revealPopup(isAdvanced: true) }
 
-    // -------------- Advanced Popup Functions  -------------- //
+    // -------------- Advanced Popup -------------- //
     // --------------------------------------------------- //
     
     @IBOutlet weak var privateButton: UIButton!
@@ -100,7 +100,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     @IBAction func historyButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealHistoryPopup(); }
     @IBAction func dismissAdvancedPopup(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "DOWN"); revealPopup(isAdvanced: false) }
     
-    // -------------- Search Popup Functions -------------- //
+    // -------------- Search Popup -------------- //
     // ------------------------------------------------ //
     @IBOutlet weak var searchPopup: UIView!
     @IBOutlet weak var searchCenterConstraint: NSLayoutConstraint!
@@ -190,12 +190,10 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     }
     
     // -------------- Monitor Loading Progress -------------- //
-    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
     { if keyPath == "estimatedProgress" { progress.progress = Float(webView.estimatedProgress) } }
 
     // -------------- Search Bar Handler -------------- //
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
         view.endEditing(true)
@@ -223,7 +221,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         }
     }
     
-    // -------------- Browser Navigation Functions -------------- //
+    // -------------- Browser Navigation -------------- //
     
     func  goHome() { webView.load(URLRequest(url: URL(string: "https://tcb.ai/")!)) }
     func goEmail() { webView.load(URLRequest(url: URL(string: "https://tcb.ai/webmail")!)) }
@@ -232,7 +230,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     func goBack() { if webView.canGoBack { webView.goBack() } }
     func goForward() { if webView.canGoForward { webView.goForward() } }
     
-    // -------------- Browser Data Management Functions -------------- //
+    // -------------- Browser Data Management -------------- //
 
     func deleteHistory(FromPastDays: Int)
     {
@@ -287,7 +285,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         self.deleteSessionData(FromPastDays: FromPastDays)
     }
     
-    // -------------- Browser Settings Functions -------------- //
+    // -------------- Browser Settings -------------- //
     
     func toggleJs()
     {
@@ -297,7 +295,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         dismissAllPopups()
     }
     
-    // -------------- Popup Control Functions -------------- //
+    // -------------- Popup Control -------------- //
     
     func revealPopup(isAdvanced: Bool)
     {
@@ -361,7 +359,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         
         UIView.animate(withDuration: 0.3, animations: { self.menuButton.transform = CGAffineTransform.identity.rotated(by: CGFloat(0)) })
     }
-    
+
     func dismissPopup(Constraint: NSLayoutConstraint?, Direction: String?)
     {
         if Direction == "UP"
@@ -378,7 +376,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         }
     }
     
-    // -------------- Table View Functions -------------- //
+    // -------------- Table View -------------- //
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return history.count + 1 }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {  if indexPath.row == 0 { return 75.0 } else {  return 50.0 } }

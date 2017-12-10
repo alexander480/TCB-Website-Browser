@@ -7,16 +7,20 @@
 //
 
 import UIKit
-import WebKit
 import CoreFoundation
 import CoreData
+import WebKit
 
-// -------------- Global Variables -------------- //
-// ------------------------------------------ //
+// -------------------------------------------------- //
+// ------------------ Global Variables ------------------ //
+// -------------------------------------------------- //
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let context = appDelegate.persistentContainer.viewContext
 
+let pm = PasswordManager()
+
+// -------------------------------------------------- //
 // -------------- Start View Controller Class -------------- //
 // -------------------------------------------------- //
 
@@ -48,8 +52,9 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     }
     @IBAction func dismissPopup(_ sender: Any) { dismissAllPopups() }
 
-    // -------------- Main Popup -------------- //
-    // ------------------------------------------ //
+    // -------------------------------------------------- //
+    // -------------------- Main Popup -------------------- //
+    // -------------------------------------------------- //
     
     @IBOutlet weak var popup: UIView!
     @IBOutlet weak var popupCenterConstraint: NSLayoutConstraint!
@@ -66,8 +71,9 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     @IBAction func forwardButtonAction(_ sender: Any) { dismissAllPopups(); goForward(); }
     @IBAction func showAdvancedPopup(_ sender: Any) { revealPopup(isAdvanced: true) }
 
-    // -------------- Advanced Popup -------------- //
-    // --------------------------------------------------- //
+    // -------------------------------------------------- //
+    // ------------------ Advanced Popup ------------------ //
+    // -------------------------------------------------- //
     
     @IBOutlet weak var privateButton: UIButton!
     @IBOutlet weak var advancedPopup: UIView!
@@ -98,10 +104,13 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     @IBAction func trashButton(_ sender: Any) { clearDataAlert(WebView: self.webView); dismissAllPopups(); }
     @IBAction func searchButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealSearchPopup(); }
     @IBAction func historyButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealHistoryPopup(); }
-    @IBAction func dismissAdvancedPopup(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "DOWN"); revealPopup(isAdvanced: false) }
+
+    @IBAction func passwordButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealPasswordPopup(); }
     
-    // -------------- Search Popup -------------- //
     // ------------------------------------------------ //
+    // ------------------ Search Popup ------------------ //
+    // ------------------------------------------------ //
+    
     @IBOutlet weak var searchPopup: UIView!
     @IBOutlet weak var searchCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var googleButton: UIButton!
@@ -159,6 +168,27 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     
     @IBAction func dismisSearchAction(_ sender: Any) { dismissPopup(Constraint: searchCenterConstraint, Direction: "UP"); revealPopup(isAdvanced: true); }
 
+    // -------------------------------------------------- //
+    // ------------------ Password Popup ------------------ //
+    // -------------------------------------------------- //
+    
+    @IBOutlet weak var passwordPopup: ViewClass!
+    @IBOutlet weak var passwordPopupConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var passwordUrlLabel: UILabel!
+    @IBOutlet weak var popupUsernameField: UITextField!
+    @IBOutlet weak var popupPasswordField: UITextField!
+    
+    @IBOutlet weak var savePasswordButton: UIButton!
+    @IBAction func savePasswordAction(_ sender: Any)
+    {
+        if let username = popupUsernameField.text, let password = popupPasswordField.text, let title = webView.title, let url = webView.url?.absoluteString
+        {
+            let login = pm.saveLoginFor(LoginObject: LoginObject(Title: title  , CoreObject: nil, URL: url, Username: username, Password: password))
+            pm.loginObjects.append(login)
+        }
+    }
+    
     
     // -------------- View Did Load -------------- //
     // ---------------------------------------- //
@@ -350,8 +380,18 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
     }
     
+    func revealPasswordPopup()
+    {
+        self.advancedCenterConstraint.constant = -750
+        self.passwordPopupConstraint.constant = -121.5
+        self.dismissPopupButton.alpha = 1.0
+        
+        UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
+    }
+    
     func dismissAllPopups()
     {
+        dismissPopup(Constraint: self.passwordPopupConstraint, Direction: "DOWN")
         dismissPopup(Constraint: self.searchCenterConstraint, Direction: "DOWN")
         dismissPopup(Constraint: self.historyCenterConstraint, Direction: "DOWN")
         dismissPopup(Constraint: self.advancedCenterConstraint, Direction: "DOWN")

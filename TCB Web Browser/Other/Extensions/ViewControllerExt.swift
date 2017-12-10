@@ -50,4 +50,12 @@ extension UIViewController
     @objc func alertControllerBackgroundTapped() { self.dismiss(animated: true, completion: nil) }
 }
 
+@IBDesignable class FormTextField: UITextField {
+    @IBInspectable var borderColor: UIColor? { didSet { layer.borderColor = borderColor?.cgColor } }
+    @IBInspectable var borderWidth: CGFloat = 0 { didSet { layer.borderWidth = borderWidth } }
+    @IBInspectable var cornerRadius: CGFloat = 0 { didSet { layer.cornerRadius = cornerRadius } }
+}
+
+@IBDesignable class ViewClass: UIView { @IBInspectable var cornerRadius: CGFloat = 0 { didSet { layer.cornerRadius = cornerRadius } } }
+
 

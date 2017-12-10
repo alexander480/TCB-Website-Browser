@@ -18,7 +18,9 @@
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
 		1493F5341FB28AD200D0F6B6 /* ViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */; };
 		149CD41C1FCCD8980026F9A0 /* WebViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */; };
+		14A8F8CF1FDCE4C1002326CD /* javascript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 14A8F8CE1FDCE4C1002326CD /* javascript.rtf */; };
 		14E7AA8C1FDB3501006BC5AB /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7AA8B1FDB3501006BC5AB /* EmailManager.swift */; };
+		14E7AA8F1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 14E7AA8E1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,9 +35,11 @@
 		1491E7581FB13EC000D49372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1491E75B1FB13EC000D49372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1491E75D1FB13EC000D49372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerExt.swift; path = "TCB Web Browser/Extensions/ViewControllerExt.swift"; sourceTree = SOURCE_ROOT; };
+		1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerExt.swift; path = "TCB Web Browser/Other/Extensions/ViewControllerExt.swift"; sourceTree = SOURCE_ROOT; };
 		149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewExt.swift; sourceTree = "<group>"; };
+		14A8F8CE1FDCE4C1002326CD /* javascript.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = javascript.rtf; sourceTree = "<group>"; };
 		14E7AA8B1FDB3501006BC5AB /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
+		14E7AA8E1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +56,10 @@
 		1490957C1FD76387000BB714 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				149095801FD76529000BB714 /* SegmentedControlExt.swift */,
+				1490957E1FD764E8000BB714 /* StringExt.swift */,
 				1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */,
 				149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */,
-				1490957E1FD764E8000BB714 /* StringExt.swift */,
+				149095801FD76529000BB714 /* SegmentedControlExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -63,6 +67,7 @@
 		1490957D1FD76396000BB714 /* Password Manager */ = {
 			isa = PBXGroup;
 			children = (
+				14A8F8CE1FDCE4C1002326CD /* javascript.rtf */,
 				1490957A1FD762E3000BB714 /* PasswordManager.swift */,
 			);
 			path = "Password Manager";
@@ -103,6 +108,7 @@
 				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
 				1491E75D1FB13EC000D49372 /* Info.plist */,
 				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
+				14E7AA8E1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf */,
 				1491E7581FB13EC000D49372 /* Assets.xcassets */,
 			);
 			path = Other;
@@ -184,8 +190,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14A8F8CF1FDCE4C1002326CD /* javascript.rtf in Resources */,
 				1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */,
 				1491E7591FB13EC000D49372 /* Assets.xcassets in Resources */,
+				14E7AA8F1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf in Resources */,
 				1491E7571FB13EC000D49372 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

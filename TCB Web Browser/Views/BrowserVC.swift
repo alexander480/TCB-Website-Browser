@@ -18,7 +18,6 @@ import WebKit
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let context = appDelegate.persistentContainer.viewContext
 
-let pm = PasswordManager()
 
 // -------------------------------------------------- //
 // -------------- Start View Controller Class -------------- //
@@ -26,8 +25,12 @@ let pm = PasswordManager()
 
 class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigationDelegate, UITableViewDelegate, UITableViewDataSource
 {
-    var history = [NSManagedObject]()
+    var user: TCBUser?
+    
+    let auth = TCBAuth()
     let pref = WKPreferences()
+    
+    var history = [NSManagedObject]()
     
     var engine = "Google"
     var isPrivate = false
@@ -105,7 +108,11 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     @IBAction func searchButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealSearchPopup(); }
     @IBAction func historyButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealHistoryPopup(); }
 
-    @IBAction func passwordButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealPasswordPopup(); }
+    @IBAction func passwordButtonAction(_ sender: Any)
+    {
+        dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP");
+        revealPasswordPopup();
+    }
     
     // ------------------------------------------------ //
     // ------------------ Search Popup ------------------ //
@@ -184,8 +191,16 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     {
         if let username = popupUsernameField.text, let password = popupPasswordField.text, let title = webView.title, let url = webView.url?.absoluteString
         {
-            let login = pm.saveLoginFor(LoginObject: LoginObject(Title: title  , CoreObject: nil, URL: url, Username: username, Password: password))
-            pm.loginObjects.append(login)
+            if let user = self.user
+            {
+                let newObject = LoginObject(Title: title, URL: url, Date: Date().description, Username: username, Password: password, uid: nil)
+                     newObject.saveToFirebase(User: user)
+                     user.loginObjects.append(newObject)
+            }
+            else
+            {
+                self.user = self.auth.getUser()
+            }
         }
     }
     
@@ -385,6 +400,8 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         self.advancedCenterConstraint.constant = -750
         self.passwordPopupConstraint.constant = -121.5
         self.dismissPopupButton.alpha = 1.0
+        
+        if let url = webView.url?.absoluteString { self.passwordUrlLabel.text = url }
         
         UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
     }

@@ -1,0 +1,6 @@
+framework module Pods_TCB_Web_Browser {
+  umbrella header "Pods-TCB Web Browser-umbrella.h"
+
+  export *
+  module * { export * }
+}

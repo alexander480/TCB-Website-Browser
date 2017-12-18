@@ -12,6 +12,18 @@ import WebKit
 
 extension WKWebView
 {
+    func injectLogin(LoginObject: LoginObject)
+    {
+        let dictionaryData = LoginObject.asDictionary
+        
+        let serializedData = try! JSONSerialization.data(withJSONObject: dictionaryData!, options: .prettyPrinted)
+        let encodedData = serializedData.base64EncodedString(options: .endLineWithLineFeed)
+        
+        let jsString = "autofill(\(encodedData)); function autofill(sBinaryParam) { console.log('// ------- Initializing Password Manager ------- //'); var sDecodedParam = window.atob(sBinaryParam); var oData = JSON.parse(sDecodedParam); var url = oData.url; var username = oData.username; var password = oData.password; console.log('URL: ' + url); console.log('Username: ' + username); console.log('Password: ' + password); console.log('// ------- Autofilling Login Forms ------ //'); var emailField = document.querySelectorAll('input[type='email']'); var passwordField = document.querySelectorAll('input[type='password']'); emailField.text = username; passwordField.text = password; } "
+        
+        self.evaluateJavaScript(jsString);
+    }
+    
     func historyObject(URL: String, Date: Date) -> NSManagedObject?
     {
         let context = appDelegate.persistentContainer.viewContext

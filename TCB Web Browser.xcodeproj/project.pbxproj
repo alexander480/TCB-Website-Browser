@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06A6ABE773442DA765DE25B9 /* Pods_TCB_Web_Browser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA75EAEEF9447B41BCB426CC /* Pods_TCB_Web_Browser.framework */; };
+		142DEF081FE1EA2700D26837 /* StoryboardExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142DEF071FE1EA2700D26837 /* StoryboardExt.swift */; };
+		14496B491FE09AD7007F619A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14496B481FE09AD7007F619A /* GoogleService-Info.plist */; };
 		1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1483932A1FB659300089D95E /* Model.xcdatamodeld */; };
-		1490957B1FD762E3000BB714 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1490957A1FD762E3000BB714 /* PasswordManager.swift */; };
 		1490957F1FD764E8000BB714 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1490957E1FD764E8000BB714 /* StringExt.swift */; };
 		149095811FD76529000BB714 /* SegmentedControlExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149095801FD76529000BB714 /* SegmentedControlExt.swift */; };
 		1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491E7511FB13EC000D49372 /* AppDelegate.swift */; };
@@ -18,14 +20,16 @@
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
 		1493F5341FB28AD200D0F6B6 /* ViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */; };
 		149CD41C1FCCD8980026F9A0 /* WebViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */; };
-		14A8F8CF1FDCE4C1002326CD /* javascript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 14A8F8CE1FDCE4C1002326CD /* javascript.rtf */; };
-		14E7AA8C1FDB3501006BC5AB /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7AA8B1FDB3501006BC5AB /* EmailManager.swift */; };
+		14DA31591FE76CEF00097152 /* TCBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA31581FE76CEF00097152 /* TCBUser.swift */; };
+		14DA315B1FE7764A00097152 /* LoginObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA315A1FE7764A00097152 /* LoginObject.swift */; };
+		14DA315D1FE7848700097152 /* TCBAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA315C1FE7848700097152 /* TCBAuth.swift */; };
 		14E7AA8F1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 14E7AA8E1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		142DEF071FE1EA2700D26837 /* StoryboardExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExt.swift; sourceTree = "<group>"; };
+		14496B481FE09AD7007F619A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1483932B1FB659300089D95E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		1490957A1FD762E3000BB714 /* PasswordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordManager.swift; sourceTree = "<group>"; };
 		1490957E1FD764E8000BB714 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		149095801FD76529000BB714 /* SegmentedControlExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlExt.swift; sourceTree = "<group>"; };
 		1491E74E1FB13EC000D49372 /* TCB Web Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCB Web Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,9 +41,13 @@
 		1491E75D1FB13EC000D49372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerExt.swift; path = "TCB Web Browser/Other/Extensions/ViewControllerExt.swift"; sourceTree = SOURCE_ROOT; };
 		149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewExt.swift; sourceTree = "<group>"; };
-		14A8F8CE1FDCE4C1002326CD /* javascript.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = javascript.rtf; sourceTree = "<group>"; };
-		14E7AA8B1FDB3501006BC5AB /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
+		14DA31581FE76CEF00097152 /* TCBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCBUser.swift; sourceTree = "<group>"; };
+		14DA315A1FE7764A00097152 /* LoginObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginObject.swift; sourceTree = "<group>"; };
+		14DA315C1FE7848700097152 /* TCBAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCBAuth.swift; sourceTree = "<group>"; };
 		14E7AA8E1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Regular.otf"; sourceTree = "<group>"; };
+		42E78C0B51A9DCB812F54C35 /* Pods-TCB Web Browser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCB Web Browser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TCB Web Browser/Pods-TCB Web Browser.debug.xcconfig"; sourceTree = "<group>"; };
+		BA75EAEEF9447B41BCB426CC /* Pods_TCB_Web_Browser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TCB_Web_Browser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC33B937AD3F6357DE556A77 /* Pods-TCB Web Browser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCB Web Browser.release.xcconfig"; path = "Pods/Target Support Files/Pods-TCB Web Browser/Pods-TCB Web Browser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,12 +55,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A6ABE773442DA765DE25B9 /* Pods_TCB_Web_Browser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01D0DD5E56C667B81866F6FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA75EAEEF9447B41BCB426CC /* Pods_TCB_Web_Browser.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1490957C1FD76387000BB714 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +77,7 @@
 				1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */,
 				149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */,
 				149095801FD76529000BB714 /* SegmentedControlExt.swift */,
+				142DEF071FE1EA2700D26837 /* StoryboardExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -67,8 +85,9 @@
 		1490957D1FD76396000BB714 /* Password Manager */ = {
 			isa = PBXGroup;
 			children = (
-				14A8F8CE1FDCE4C1002326CD /* javascript.rtf */,
-				1490957A1FD762E3000BB714 /* PasswordManager.swift */,
+				14DA315C1FE7848700097152 /* TCBAuth.swift */,
+				14DA31581FE76CEF00097152 /* TCBUser.swift */,
+				14DA315A1FE7764A00097152 /* LoginObject.swift */,
 			);
 			path = "Password Manager";
 			sourceTree = "<group>";
@@ -78,6 +97,8 @@
 			children = (
 				1491E7501FB13EC000D49372 /* TCB Web Browser */,
 				1491E74F1FB13EC000D49372 /* Products */,
+				26B2CF4114D2136222F557EA /* Pods */,
+				01D0DD5E56C667B81866F6FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				1491E7651FB13EEC00D49372 /* Views */,
-				14E7AA8D1FDB350A006BC5AB /* Email Manager */,
 				1490957D1FD76396000BB714 /* Password Manager */,
 				1491E7641FB13EE600D49372 /* Other */,
 			);
@@ -104,10 +124,11 @@
 			isa = PBXGroup;
 			children = (
 				1490957C1FD76387000BB714 /* Extensions */,
+				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
 				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
 				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
 				1491E75D1FB13EC000D49372 /* Info.plist */,
-				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
+				14496B481FE09AD7007F619A /* GoogleService-Info.plist */,
 				14E7AA8E1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf */,
 				1491E7581FB13EC000D49372 /* Assets.xcassets */,
 			);
@@ -123,12 +144,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		14E7AA8D1FDB350A006BC5AB /* Email Manager */ = {
+		26B2CF4114D2136222F557EA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				14E7AA8B1FDB3501006BC5AB /* EmailManager.swift */,
+				42E78C0B51A9DCB812F54C35 /* Pods-TCB Web Browser.debug.xcconfig */,
+				EC33B937AD3F6357DE556A77 /* Pods-TCB Web Browser.release.xcconfig */,
 			);
-			path = "Email Manager";
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +160,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1491E7601FB13EC000D49372 /* Build configuration list for PBXNativeTarget "TCB Web Browser" */;
 			buildPhases = (
+				BF65EC9DDCA92628065332C5 /* [CP] Check Pods Manifest.lock */,
 				1491E74A1FB13EC000D49372 /* Sources */,
 				1491E74B1FB13EC000D49372 /* Frameworks */,
 				1491E74C1FB13EC000D49372 /* Resources */,
+				1D0FBE746843B1245BCA057C /* [CP] Embed Pods Frameworks */,
+				DA7D4D1711A9226103E59ADF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,9 +215,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14A8F8CF1FDCE4C1002326CD /* javascript.rtf in Resources */,
 				1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */,
 				1491E7591FB13EC000D49372 /* Assets.xcassets in Resources */,
+				14496B491FE09AD7007F619A /* GoogleService-Info.plist in Resources */,
 				14E7AA8F1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf in Resources */,
 				1491E7571FB13EC000D49372 /* Main.storyboard in Resources */,
 			);
@@ -200,18 +225,80 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1D0FBE746843B1245BCA057C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TCB Web Browser/Pods-TCB Web Browser-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TCB Web Browser/Pods-TCB Web Browser-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF65EC9DDCA92628065332C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TCB Web Browser-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA7D4D1711A9226103E59ADF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TCB Web Browser/Pods-TCB Web Browser-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1491E74A1FB13EC000D49372 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1490957B1FD762E3000BB714 /* PasswordManager.swift in Sources */,
+				14DA31591FE76CEF00097152 /* TCBUser.swift in Sources */,
 				1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */,
 				149095811FD76529000BB714 /* SegmentedControlExt.swift in Sources */,
+				142DEF081FE1EA2700D26837 /* StoryboardExt.swift in Sources */,
 				1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */,
-				14E7AA8C1FDB3501006BC5AB /* EmailManager.swift in Sources */,
 				1490957F1FD764E8000BB714 /* StringExt.swift in Sources */,
+				14DA315D1FE7848700097152 /* TCBAuth.swift in Sources */,
 				149CD41C1FCCD8980026F9A0 /* WebViewExt.swift in Sources */,
+				14DA315B1FE7764A00097152 /* LoginObject.swift in Sources */,
 				1493F5341FB28AD200D0F6B6 /* ViewControllerExt.swift in Sources */,
 				1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */,
 			);
@@ -348,6 +435,7 @@
 		};
 		1491E7611FB13EC000D49372 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42E78C0B51A9DCB812F54C35 /* Pods-TCB Web Browser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -364,6 +452,7 @@
 		};
 		1491E7621FB13EC000D49372 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC33B937AD3F6357DE556A77 /* Pods-TCB Web Browser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

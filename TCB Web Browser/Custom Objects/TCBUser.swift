@@ -21,6 +21,12 @@ class TCBUser: NSObject
     
     var reference: DatabaseReference!
     
+    var bookmarkReference: DatabaseReference!
+    var bookmarkObjects: [BookmarkObject]!
+    
+    var historyReference: DatabaseReference!
+    var historyObjects: [HistoryObject]!
+    
     var loginReference: DatabaseReference!
     var loginObjects: [LoginObject]!
     
@@ -33,10 +39,13 @@ class TCBUser: NSObject
         self.name = FIRUser.displayName
         self.reference = Database.database().reference(withPath: "/users/\(FIRUser.uid)")
         self.loginReference = Database.database().reference(withPath: "/users/\(FIRUser.uid)/logins")
+        self.historyReference = Database.database().reference(withPath: "/users/\(FIRUser.uid)/history")
+        self.bookmarkReference = Database.database().reference(withPath: "/users/\(FIRUser.uid)/bookmarks")
         
         super.init()
         
         self.loginObjects = getLoginObjects()
+        self.historyObjects = getHistoryObjects()
     }
     
     func getLogin(forURL: String) -> LoginObject?
@@ -68,10 +77,29 @@ class TCBUser: NSObject
         reference.observeSingleEvent(of: .value, with: { (snapshot) in
             for object in snapshot.children.allObjects as! [DataSnapshot]
             {
-                let dict = object.dictionaryWithValues(forKeys: ["Title", "Url", "Date", "Username", "Password"]) as! [String: String]
-                if let title = dict["Title"], let url = dict["Url"], let date = dict["Date"], let username = dict["Username"], let password = dict["Password"]
+                let dict = object.dictionaryWithValues(forKeys: ["Title", "URL", "Date", "Username", "Password"]) as! [String: String]
+                if let title = dict["Title"], let url = dict["URL"], let date = dict["Date"], let username = dict["Username"], let password = dict["Password"]
                 {
-                    let newObject = LoginObject(Title: title, URL: url, Date: date, Username: username, Password: password, uid: object.key)
+                    let newObject = LoginObject(Title: title, URL: url, Date: date, Username: username, Password: password, ID: object.key)
+                    array.append(newObject)
+                }
+            }
+        })
+        
+        return array
+    }
+    
+    private func getHistoryObjects() -> [HistoryObject]?
+    {
+        var array = [HistoryObject]()
+        
+        reference.observeSingleEvent(of: .value, with: { (snapshot) in
+            for object in snapshot.children.allObjects as! [DataSnapshot]
+            {
+                let dict = object.dictionaryWithValues(forKeys: ["Title", "URL", "Date"]) as! [String: String]
+                if let title = dict["Title"], let url = dict["URL"], let date = dict["Date"]
+                {
+                    let newObject = HistoryObject(Title: title, URL: url, Date: date, ID: object.key)
                     array.append(newObject)
                 }
             }

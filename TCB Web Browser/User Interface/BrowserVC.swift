@@ -9,7 +9,9 @@
 import UIKit
 import CoreFoundation
 import CoreData
+import Firebase
 import WebKit
+
 
 // -------------------------------------------------- //
 // ------------------ Global Variables ------------------ //
@@ -18,6 +20,9 @@ import WebKit
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let context = appDelegate.persistentContainer.viewContext
 
+let auth = Auth.auth()
+var tcbUser: TCBUser!
+
 
 // -------------------------------------------------- //
 // -------------- Start View Controller Class -------------- //
@@ -25,11 +30,7 @@ let context = appDelegate.persistentContainer.viewContext
 
 class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigationDelegate, UITableViewDelegate, UITableViewDataSource
 {
-    var user: TCBUser?
-    
-    let auth = TCBAuth()
     let pref = WKPreferences()
-    
     var history = [NSManagedObject]()
     
     var engine = "Google"
@@ -54,157 +55,74 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         revealPopup(isAdvanced: false)
     }
     @IBAction func dismissPopup(_ sender: Any) { dismissAllPopups() }
-
+    
+    
     // -------------------------------------------------- //
     // -------------------- Main Popup -------------------- //
     // -------------------------------------------------- //
     
-    @IBOutlet weak var popup: UIView!
-    @IBOutlet weak var popupCenterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mainPopup: UIView!
+    @IBOutlet weak var mainCenterConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var userButton: UIButton!
+    @IBAction func userAction(_ sender: Any)
+    {
+        if let user = auth.currentUser
+        {
+            print("User \(user.uid) Is Currently Signed In")
+            dismissPopup(Constraint: self.mainCenterConstraint, Direction: "UP")
+            self.present(UserVC(), animated: true, completion: nil)
+        }
+        else
+        {
+            print("No User Is Currently Signed In")
+            dismissPopup(Constraint: self.mainCenterConstraint, Direction: "UP")
+            self.present(AuthVC(), animated: true, completion: nil)
+        }
+    }
     @IBOutlet weak var homeButton: UIButton!
-    @IBOutlet weak var reloadButton: UIButton!
-    @IBOutlet weak var mailButton: UIButton!
+    @IBAction func homeAction(_ sender: Any) { dismissAllPopups(); goHome(); }
+    
+    @IBOutlet weak var refreshButton: UIButton!
+    @IBAction func refreshAction(_ sender: Any) { dismissAllPopups(); refresh(); }
+    
+    @IBOutlet weak var moreButton: UIButton!
+    @IBAction func moreAction(_ sender: Any) { revealPopup(isAdvanced: true) }
+    
     @IBOutlet weak var backButton: UIButton!
+    @IBAction func backAction(_ sender: Any) { dismissAllPopups(); goBack(); }
+    
     @IBOutlet weak var forwardButton: UIButton!
+    @IBAction func forwardAction(_ sender: Any) { dismissAllPopups(); goForward(); }
 
-    @IBAction func homeButtonAction(_ sender: Any) { dismissAllPopups(); goHome(); }
-    @IBAction func mailButtonAction(_ sender: Any) { dismissAllPopups(); goEmail(); }
-    @IBAction func reloadButtonAction(_ sender: Any) { dismissAllPopups(); refresh(); }
-    @IBAction func backButtonAction(_ sender: Any) { dismissAllPopups(); goBack(); }
-    @IBAction func forwardButtonAction(_ sender: Any) { dismissAllPopups(); goForward(); }
-    @IBAction func showAdvancedPopup(_ sender: Any) { revealPopup(isAdvanced: true) }
-
+    
     // -------------------------------------------------- //
     // ------------------ Advanced Popup ------------------ //
     // -------------------------------------------------- //
     
-    @IBOutlet weak var privateButton: UIButton!
     @IBOutlet weak var advancedPopup: UIView!
     @IBOutlet weak var advancedCenterConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var privateButton: UIButton!
+    @IBAction func privateAction(_ sender: Any) { togglePrivate(); dismissAllPopups() }
+    
     @IBOutlet weak var jsButton: UIButton!
+    @IBAction func jsAction(_ sender: Any) { toggleJs(); dismissAllPopups() }
+    
+    @IBOutlet weak var passwordButton: UIButton!
+    @IBAction func passwordAction(_ sender: Any) { dismissPopup(Constraint: self.advancedCenterConstraint, Direction: "UP") }
+    
     @IBOutlet weak var trashButton: UIButton!
+    @IBAction func trashAction(_ sender: Any) { clearDataAlert(WebView: self.webView); dismissAllPopups(); }
+    
     @IBOutlet weak var searchButton: UIButton!
+    @IBAction func searchAction(_ sender: Any) { dismissPopup(Constraint: self.advancedCenterConstraint, Direction: "UP") }
     
-    @IBAction func privateButtonAction(_ sender: Any)
-    {
-        if isPrivate
-        {
-            isPrivate = false;
-            privateButton.setImage(#imageLiteral(resourceName: "icons8-hide-filled-50"), for: .normal);
-            
-            self.alert(Title: "Private Browsing Disabled", Message: "");
-            self.dismissAllPopups()
-        }
-        else
-        {
-            isPrivate = true;
-            privateButton.setImage(#imageLiteral(resourceName: "icons8-hide-filled-50 (1)"), for: .normal);
-            
-            self.alert(Title: "Private Browsing Enabled", Message: "");
-            self.dismissAllPopups()
-        }
-    }
-    @IBAction func trashButton(_ sender: Any) { clearDataAlert(WebView: self.webView); dismissAllPopups(); }
-    @IBAction func searchButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealSearchPopup(); }
-    @IBAction func historyButtonAction(_ sender: Any) { dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP"); revealHistoryPopup(); }
-
-    @IBAction func passwordButtonAction(_ sender: Any)
-    {
-        dismissPopup(Constraint: advancedCenterConstraint, Direction: "UP");
-        revealPasswordPopup();
-    }
-    
-    // ------------------------------------------------ //
-    // ------------------ Search Popup ------------------ //
-    // ------------------------------------------------ //
-    
-    @IBOutlet weak var searchPopup: UIView!
-    @IBOutlet weak var searchCenterConstraint: NSLayoutConstraint!
-    @IBOutlet weak var googleButton: UIButton!
-    @IBOutlet weak var yahooButton: UIButton!
-    @IBOutlet weak var bingButton: UIButton!
-    @IBOutlet weak var duckButton: UIButton!
-    
-    @IBAction func googleButtonAction(_ sender: Any)
-    {
-        engine = "Google"
-        
-        googleButton.setImage(#imageLiteral(resourceName: "icons8-google (3)"), for: .normal)
-        yahooButton.setImage(#imageLiteral(resourceName: "icons8-yahoo"), for: .normal)
-        bingButton.setImage(#imageLiteral(resourceName: "icons8-bing (1)"), for: .normal)
-        duckButton.setImage(#imageLiteral(resourceName: "icons8-duckduckgo"), for: .normal)
-        
-        dismissAllPopups()
-    }
-
-    @IBAction func yahooButtonAction(_ sender: Any)
-    {
-        engine = "Yahoo"
-        
-        googleButton.setImage(#imageLiteral(resourceName: "icons8-google (2)"), for: .normal)
-        yahooButton.setImage(#imageLiteral(resourceName: "icons8-yahoo (1)"), for: .normal)
-        bingButton.setImage(#imageLiteral(resourceName: "icons8-bing (1)"), for: .normal)
-        duckButton.setImage(#imageLiteral(resourceName: "icons8-duckduckgo"), for: .normal)
-        
-        dismissAllPopups()
-    }
-    
-    @IBAction func bingButtonAction(_ sender: Any)
-    {
-        engine = "Bing"
-        
-        googleButton.setImage(#imageLiteral(resourceName: "icons8-google (2)"), for: .normal)
-        yahooButton.setImage(#imageLiteral(resourceName: "icons8-yahoo"), for: .normal)
-        bingButton.setImage(#imageLiteral(resourceName: "icons8-bing (2)"), for: .normal)
-        duckButton.setImage(#imageLiteral(resourceName: "icons8-duckduckgo"), for: .normal)
-        
-        dismissAllPopups()
-    }
-
-    @IBAction func duckButtonAction(_ sender: Any)
-    {
-        engine = "DuckDuckGo"
-        
-        googleButton.setImage(#imageLiteral(resourceName: "icons8-google (2)"), for: .normal)
-        yahooButton.setImage(#imageLiteral(resourceName: "icons8-yahoo"), for: .normal)
-        bingButton.setImage(#imageLiteral(resourceName: "icons8-bing (1)"), for: .normal)
-        duckButton.setImage(#imageLiteral(resourceName: "icons8-duckduckgo (1)"), for: .normal)
-        
-        dismissAllPopups()
-    }
-    
-    @IBAction func dismisSearchAction(_ sender: Any) { dismissPopup(Constraint: searchCenterConstraint, Direction: "UP"); revealPopup(isAdvanced: true); }
-
-    // -------------------------------------------------- //
-    // ------------------ Password Popup ------------------ //
-    // -------------------------------------------------- //
-    
-    @IBOutlet weak var passwordPopup: ViewClass!
-    @IBOutlet weak var passwordPopupConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var passwordUrlLabel: UILabel!
-    @IBOutlet weak var popupUsernameField: UITextField!
-    @IBOutlet weak var popupPasswordField: UITextField!
-    
-    @IBOutlet weak var savePasswordButton: UIButton!
-    @IBAction func savePasswordAction(_ sender: Any)
-    {
-        if let username = popupUsernameField.text, let password = popupPasswordField.text, let title = webView.title, let url = webView.url?.absoluteString
-        {
-            if let user = self.user
-            {
-                let newObject = LoginObject(Title: title, URL: url, Date: Date().description, Username: username, Password: password, uid: nil)
-                     newObject.saveToFirebase(User: user)
-                     user.loginObjects.append(newObject)
-            }
-            else
-            {
-                self.user = self.auth.getUser()
-            }
-        }
-    }
+    @IBOutlet weak var dismissButton: UIButton!
+    @IBAction func dismissAction(_ sender: Any) { dismissPopup(Constraint: self.advancedCenterConstraint, Direction: "DOWN") }
     
     
+    // ---------------------------------------- //
     // -------------- View Did Load -------------- //
     // ---------------------------------------- //
     override func viewDidLoad()
@@ -219,9 +137,8 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         self.tableView.dataSource = self
         
         self.dismissPopupButton.alpha = 0.0
-        self.popupCenterConstraint.constant = 750
+        self.mainCenterConstraint.constant = 750
         self.advancedCenterConstraint.constant = 750
-        self.searchCenterConstraint.constant = 750
         self.historyCenterConstraint.constant = 750
         
         progress.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
@@ -235,9 +152,11 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     }
     
     // -------------- Monitor Loading Progress -------------- //
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
     { if keyPath == "estimatedProgress" { progress.progress = Float(webView.estimatedProgress) } }
 
+    
     // -------------- Search Bar Handler -------------- //
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
@@ -332,7 +251,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     
     // -------------- Browser Settings -------------- //
     
-    func toggleJs()
+    private func toggleJs()
     {
         if js { js = false; pref.javaScriptEnabled = false; jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled (1)")  , for: .normal); alert(Title: "Javascript Disabled", Message: ""); }
         else { js = true; pref.javaScriptEnabled = true; jsButton.setImage( #imageLiteral(resourceName: "icons8-javascript-filled")  , for: .normal); self.alert(Title: "Javascript Enabled", Message: ""); }
@@ -340,14 +259,34 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         dismissAllPopups()
     }
     
+    private func togglePrivate()
+    {
+        if isPrivate
+        {
+            isPrivate = false;
+            privateButton.setImage(#imageLiteral(resourceName: "icons8-hide-filled-50"), for: .normal);
+            
+            self.alert(Title: "Private Browsing Disabled", Message: "");
+            self.dismissAllPopups()
+        }
+        else
+        {
+            isPrivate = true;
+            privateButton.setImage(#imageLiteral(resourceName: "icons8-hide-filled-50 (1)"), for: .normal);
+            
+            self.alert(Title: "Private Browsing Enabled", Message: "");
+            self.dismissAllPopups()
+        }
+    }
+    
     // -------------- Popup Control -------------- //
     
-    func revealPopup(isAdvanced: Bool)
+    private func revealPopup(isAdvanced: Bool)
     {
         if isAdvanced
         {
             self.advancedCenterConstraint.constant = 750; self.view.layoutIfNeeded()
-            self.popupCenterConstraint.constant = -750
+            self.mainCenterConstraint.constant = -750
             self.advancedCenterConstraint.constant = 0
             self.dismissPopupButton.alpha = 1.0
             
@@ -358,7 +297,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         }
         else
         {
-            self.popupCenterConstraint.constant = 0
+            self.mainCenterConstraint.constant = 0
             self.dismissPopupButton.alpha = 1.0
             
             if webView.canGoBack { backButton.isEnabled = true } else { backButton.isEnabled = false }
@@ -368,21 +307,9 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         }
     }
     
-    func revealSearchPopup()
-    {
-        self.advancedCenterConstraint.constant = -750
-        self.dismissPopupButton.alpha = 1.0
-        self.searchCenterConstraint.constant = 0
-        
-        if engine == "Google" { googleButton.setImage(#imageLiteral(resourceName: "icons8-google (3)"), for: .normal) }
-        else if engine == "Yahoo" { yahooButton.setImage(#imageLiteral(resourceName: "icons8-yahoo (1)"), for: .normal) }
-        else if engine == "Bing" { bingButton.setImage(#imageLiteral(resourceName: "icons8-bing (2)"), for: .normal) }
-        else if engine == "DuckDuckGo" { duckButton.setImage(#imageLiteral(resourceName: "icons8-duckduckgo (1)"), for: .normal) }
-        
-        UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
-    }
     
-    func revealHistoryPopup()
+    
+    private func revealHistoryPopup()
     {
         if let historyData = self.webView.fetchHistory() { history = historyData }
         
@@ -395,24 +322,11 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
         UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
     }
     
-    func revealPasswordPopup()
-    {
-        self.advancedCenterConstraint.constant = -750
-        self.passwordPopupConstraint.constant = -121.5
-        self.dismissPopupButton.alpha = 1.0
-        
-        if let url = webView.url?.absoluteString { self.passwordUrlLabel.text = url }
-        
-        UIView.animate(withDuration: 0.3, animations: { self.view.layoutIfNeeded() })
-    }
-    
     func dismissAllPopups()
     {
-        dismissPopup(Constraint: self.passwordPopupConstraint, Direction: "DOWN")
-        dismissPopup(Constraint: self.searchCenterConstraint, Direction: "DOWN")
         dismissPopup(Constraint: self.historyCenterConstraint, Direction: "DOWN")
         dismissPopup(Constraint: self.advancedCenterConstraint, Direction: "DOWN")
-        dismissPopup(Constraint: self.popupCenterConstraint, Direction: "DOWN")
+        dismissPopup(Constraint: self.mainCenterConstraint, Direction: "DOWN")
         
         UIView.animate(withDuration: 0.3, animations: { self.menuButton.transform = CGAffineTransform.identity.rotated(by: CGFloat(0)) })
     }
@@ -435,8 +349,12 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     
     // -------------- Table View -------------- //
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return history.count + 1 }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {  if indexPath.row == 0 { return 75.0 } else {  return 50.0 } }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    { return history.count + 1 }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {  if indexPath.row == 0 { return 75.0 } else {  return 50.0 } }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         if indexPath.row == 0
@@ -452,6 +370,7 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
             return cell!
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         dismissAllPopups()
@@ -466,9 +385,8 @@ class BrowserVC: UIViewController, UISearchBarDelegate, WKUIDelegate,  WKNavigat
     {
         super.viewWillDisappear(true)
         
-        self.popupCenterConstraint.constant = 750
+        self.mainCenterConstraint.constant = 750
         self.advancedCenterConstraint.constant = -750
-        self.searchCenterConstraint.constant = 750
     }
 
 }

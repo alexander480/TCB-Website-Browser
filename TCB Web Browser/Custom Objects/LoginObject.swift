@@ -23,18 +23,18 @@ class LoginObject: NSObject
     var password: String!
     
     var asDictionary: [String: String]!
-    var id: String?
+    var uid: String?
     
-    init(Title: String, URL: String, Date: String, Username: String, Password: String, ID: String?)
+    init(Title: String, URL: String, Date: String, Username: String, Password: String, uid: String?)
     {
         self.title = Title
         self.url = URL
         self.date = Date
         self.username = Username
         self.password = Password
-        self.id = ID
+        self.uid = uid
         
-        self.asDictionary = ["Title": self.title, "URL": self.url, "Date": self.date, "Username": self.username, "Password": self.password]
+        self.asDictionary = ["Title": self.title, "Url": self.url, "Date": self.date, "Username": self.username, "Password": self.password]
     }
     
     func saveToFirebase(User: TCBUser)
@@ -42,21 +42,20 @@ class LoginObject: NSObject
         let newLogin = User.loginReference.childByAutoId()
         newLogin.setValuesForKeys(self.asDictionary)
         
-        print("Login Object Saved To Firebase")
-        self.id = newLogin.key
+        self.uid = newLogin.key
     }
     
     func removeFromFirebase(User: TCBUser)
     {
-        if let key = self.id
+        if let key = self.uid
         {
             let ref = User.loginReference.child(key)
             ref.removeValue()
-            print("Login Object Removed From Database")
+            print("Login Removed From Database")
         }
         else
         {
-            print("Login Object Never Saved To Firebase")
+            print("Login Never Saved To Firebase")
         }
     }
 }

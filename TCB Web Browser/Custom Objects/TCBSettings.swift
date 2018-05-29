@@ -7,8 +7,3 @@
 //
 
 import Foundation
-
-class TCBSettings: NSObject
-{
-    
-}

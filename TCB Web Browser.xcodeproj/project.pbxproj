@@ -20,9 +20,12 @@
 		1491E75C1FB13EC000D49372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */; };
 		1493F5341FB28AD200D0F6B6 /* ViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */; };
 		149CD41C1FCCD8980026F9A0 /* WebViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */; };
+		14BB834B1FEC49AD00056706 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BB834A1FEC49AD00056706 /* UserVC.swift */; };
+		14BB834F1FEC5CBA00056706 /* HistoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BB834E1FEC5CBA00056706 /* HistoryObject.swift */; };
+		14BB83511FEC5CDD00056706 /* BookmarkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BB83501FEC5CDD00056706 /* BookmarkObject.swift */; };
+		14BB83531FEC6BF000056706 /* TCBSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BB83521FEC6BF000056706 /* TCBSettings.swift */; };
 		14DA31591FE76CEF00097152 /* TCBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA31581FE76CEF00097152 /* TCBUser.swift */; };
 		14DA315B1FE7764A00097152 /* LoginObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA315A1FE7764A00097152 /* LoginObject.swift */; };
-		14DA315D1FE7848700097152 /* TCBAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA315C1FE7848700097152 /* TCBAuth.swift */; };
 		14E7AA8F1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 14E7AA8E1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf */; };
 /* End PBXBuildFile section */
 
@@ -39,11 +42,14 @@
 		1491E7581FB13EC000D49372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1491E75B1FB13EC000D49372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1491E75D1FB13EC000D49372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerExt.swift; path = "TCB Web Browser/Other/Extensions/ViewControllerExt.swift"; sourceTree = SOURCE_ROOT; };
+		1493F5331FB28AD200D0F6B6 /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerExt.swift; path = "TCB Web Browser/Custom Extensions/ViewControllerExt.swift"; sourceTree = SOURCE_ROOT; };
 		149CD41B1FCCD8980026F9A0 /* WebViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewExt.swift; sourceTree = "<group>"; };
+		14BB834A1FEC49AD00056706 /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
+		14BB834E1FEC5CBA00056706 /* HistoryObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryObject.swift; sourceTree = "<group>"; };
+		14BB83501FEC5CDD00056706 /* BookmarkObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkObject.swift; sourceTree = "<group>"; };
+		14BB83521FEC6BF000056706 /* TCBSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCBSettings.swift; sourceTree = "<group>"; };
 		14DA31581FE76CEF00097152 /* TCBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCBUser.swift; sourceTree = "<group>"; };
 		14DA315A1FE7764A00097152 /* LoginObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginObject.swift; sourceTree = "<group>"; };
-		14DA315C1FE7848700097152 /* TCBAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCBAuth.swift; sourceTree = "<group>"; };
 		14E7AA8E1FDB4A40006BC5AB /* AvenirNextLTPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Regular.otf"; sourceTree = "<group>"; };
 		42E78C0B51A9DCB812F54C35 /* Pods-TCB Web Browser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCB Web Browser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TCB Web Browser/Pods-TCB Web Browser.debug.xcconfig"; sourceTree = "<group>"; };
 		BA75EAEEF9447B41BCB426CC /* Pods_TCB_Web_Browser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TCB_Web_Browser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,7 +76,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1490957C1FD76387000BB714 /* Extensions */ = {
+		1490957C1FD76387000BB714 /* Custom Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				1490957E1FD764E8000BB714 /* StringExt.swift */,
@@ -79,17 +85,7 @@
 				149095801FD76529000BB714 /* SegmentedControlExt.swift */,
 				142DEF071FE1EA2700D26837 /* StoryboardExt.swift */,
 			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		1490957D1FD76396000BB714 /* Password Manager */ = {
-			isa = PBXGroup;
-			children = (
-				14DA315C1FE7848700097152 /* TCBAuth.swift */,
-				14DA31581FE76CEF00097152 /* TCBUser.swift */,
-				14DA315A1FE7764A00097152 /* LoginObject.swift */,
-			);
-			path = "Password Manager";
+			path = "Custom Extensions";
 			sourceTree = "<group>";
 		};
 		1491E7451FB13EC000D49372 = {
@@ -113,8 +109,9 @@
 		1491E7501FB13EC000D49372 /* TCB Web Browser */ = {
 			isa = PBXGroup;
 			children = (
-				1491E7651FB13EEC00D49372 /* Views */,
-				1490957D1FD76396000BB714 /* Password Manager */,
+				1491E7651FB13EEC00D49372 /* User Interface */,
+				14DA315E1FE791CE00097152 /* Custom Objects */,
+				1490957C1FD76387000BB714 /* Custom Extensions */,
 				1491E7641FB13EE600D49372 /* Other */,
 			);
 			path = "TCB Web Browser";
@@ -123,7 +120,6 @@
 		1491E7641FB13EE600D49372 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				1490957C1FD76387000BB714 /* Extensions */,
 				1491E75A1FB13EC000D49372 /* LaunchScreen.storyboard */,
 				1491E7511FB13EC000D49372 /* AppDelegate.swift */,
 				1483932A1FB659300089D95E /* Model.xcdatamodeld */,
@@ -135,13 +131,26 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
-		1491E7651FB13EEC00D49372 /* Views */ = {
+		1491E7651FB13EEC00D49372 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
 				1491E7551FB13EC000D49372 /* Main.storyboard */,
 				1491E7531FB13EC000D49372 /* BrowserVC.swift */,
+				14BB834A1FEC49AD00056706 /* UserVC.swift */,
 			);
-			path = Views;
+			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		14DA315E1FE791CE00097152 /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				14BB83521FEC6BF000056706 /* TCBSettings.swift */,
+				14DA31581FE76CEF00097152 /* TCBUser.swift */,
+				14DA315A1FE7764A00097152 /* LoginObject.swift */,
+				14BB834E1FEC5CBA00056706 /* HistoryObject.swift */,
+				14BB83501FEC5CDD00056706 /* BookmarkObject.swift */,
+			);
+			path = "Custom Objects";
 			sourceTree = "<group>";
 		};
 		26B2CF4114D2136222F557EA /* Pods */ = {
@@ -188,6 +197,7 @@
 				TargetAttributes = {
 					1491E74D1FB13EC000D49372 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -292,15 +302,18 @@
 			files = (
 				14DA31591FE76CEF00097152 /* TCBUser.swift in Sources */,
 				1491E7541FB13EC000D49372 /* BrowserVC.swift in Sources */,
+				14BB83531FEC6BF000056706 /* TCBSettings.swift in Sources */,
 				149095811FD76529000BB714 /* SegmentedControlExt.swift in Sources */,
 				142DEF081FE1EA2700D26837 /* StoryboardExt.swift in Sources */,
 				1483932C1FB659300089D95E /* Model.xcdatamodeld in Sources */,
 				1490957F1FD764E8000BB714 /* StringExt.swift in Sources */,
-				14DA315D1FE7848700097152 /* TCBAuth.swift in Sources */,
+				14BB83511FEC5CDD00056706 /* BookmarkObject.swift in Sources */,
 				149CD41C1FCCD8980026F9A0 /* WebViewExt.swift in Sources */,
 				14DA315B1FE7764A00097152 /* LoginObject.swift in Sources */,
+				14BB834F1FEC5CBA00056706 /* HistoryObject.swift in Sources */,
 				1493F5341FB28AD200D0F6B6 /* ViewControllerExt.swift in Sources */,
 				1491E7521FB13EC000D49372 /* AppDelegate.swift in Sources */,
+				14BB834B1FEC49AD00056706 /* UserVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +451,7 @@
 			baseConfigurationReference = 42E78C0B51A9DCB812F54C35 /* Pods-TCB Web Browser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWSMFUQHS2;
 				INFOPLIST_FILE = "$(SRCROOT)/TCB Web Browser/Other/Info.plist";
@@ -445,6 +459,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LAGBTECH.TCB-Web-Browser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -455,6 +470,7 @@
 			baseConfigurationReference = EC33B937AD3F6357DE556A77 /* Pods-TCB Web Browser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWSMFUQHS2;
 				INFOPLIST_FILE = "$(SRCROOT)/TCB Web Browser/Other/Info.plist";
